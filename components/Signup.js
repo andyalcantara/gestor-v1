@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput } from "react-native";
 
-
+import * as firebase from 'firebase';
 
 class Signup extends React.Component {
     render() {
