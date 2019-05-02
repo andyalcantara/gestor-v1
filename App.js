@@ -11,12 +11,26 @@ import Signin from "./components/Signin";
 import Dashboard from "./components/Dashboard";
 import Factura from './components/Factura';
 import Calculator from './components/Calculator';
+import Clinics from './components/Clinics';
+import Facturas from './components/Facturas';
 
 const StackNavigator = createStackNavigator({
+  Dashboard: { screen: Dashboard },
   Signup: { screen: Signup },
   Signin: { screen: Signin },
-  Dashboard: { screen: Dashboard },
-  Factura: { screen: Factura }
+  Facturas: { screen: Facturas },
+  Factura: { screen: Factura },
+  Clinics: { screen: Clinics},
+}, {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: 'fuchsia',
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    }
+  }
 });
 
 const TabNavigator = createBottomTabNavigator({
