@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 
 import * as firebase from 'firebase';
-import {firekeys} from '../utils/firekeys';
 import 'firebase/auth';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
@@ -14,25 +13,9 @@ class Signup extends React.Component {
         password: ''
     };
 
-    componentDidMount() {
-        let config = {
-            apiKey: "AIzaSyDtgsFRPUsaYkLKWPfOyOH-y5xSt9gi6ZQ",
-            authDomain: "gestor-a4baa.firebaseapp.com",
-            databaseURL: "https://gestor-a4baa.firebaseio.com",
-            projectId: "gestor-a4baa",
-            storageBucket: "gestor-a4baa.appspot.com",
-            messagingSenderId: "503288975364"
-        };
-        firebase.initializeApp(config);
-
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.props.navigation.navigate('Dashboard');
-            } else {
-                this.props.navigation.navigate('Signin');
-            }
-        })
-    }
+    static navigationOptions = {
+      title: 'Sign Up'
+    };
 
     handleEmail = (text) => {
         let actualText = text.trim();
@@ -69,6 +52,15 @@ class Signup extends React.Component {
                 <TextInput style={styles.input} onChangeText={this.handlePassword} />
 
                 <SubmitButton onPress={this.handleSubmit} />
+
+                <View>
+                    <Text>Already have an accout</Text>
+                    <Button
+                        title="Login"
+                        onPress={() => this.props.navigation.navigate('Sign In')}
+                        style={styles.login}
+                    />
+                </View>
             </View>
         );
     }
@@ -95,6 +87,9 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginTop: 15,
     },
+    login: {
+        fontSize: 11
+    }
 });
 
 export default Signup;
