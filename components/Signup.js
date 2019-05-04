@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
 import * as firebase from 'firebase';
 import 'firebase/auth';
@@ -12,6 +12,25 @@ class Signup extends React.Component {
         email: '',
         password: ''
     };
+
+    componentDidMount() {
+        let config = {
+            apiKey: "AIzaSyDtgsFRPUsaYkLKWPfOyOH-y5xSt9gi6ZQ",
+            authDomain: "gestor-a4baa.firebaseapp.com",
+            databaseURL: "https://gestor-a4baa.firebaseio.com",
+            projectId: "gestor-a4baa",
+            storageBucket: "gestor-a4baa.appspot.com",
+            messagingSenderId: "503288975364"
+        };
+        firebase.initializeApp(config);
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.props.navigation.navigate('Dashboard');
+            } else {
+                this.props.navigation.navigate('Signin');
+            }
+        });
+    }
 
     static navigationOptions = {
       title: 'Sign Up'
@@ -53,13 +72,14 @@ class Signup extends React.Component {
 
                 <SubmitButton onPress={this.handleSubmit} />
 
-                <View>
+                <View style={styles.login}>
                     <Text>Already have an accout</Text>
-                    <Button
-                        title="Login"
-                        onPress={() => this.props.navigation.navigate('Sign In')}
-                        style={styles.login}
-                    />
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('Signin')}
+                        style={{marginLeft: 10}}
+                    >
+                        <Text style={styles.signin}>Login</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -88,7 +108,11 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     login: {
-        fontSize: 11
+        flexDirection: 'row',
+        marginTop: 10
+    },
+    signin: {
+        color: 'fuchsia'
     }
 });
 

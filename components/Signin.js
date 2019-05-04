@@ -1,12 +1,46 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
-import SubmitButton from "./Signup";
+import SubmitButton from '../utils/utility-components/SubmitButton';
+import * as firebase from "firebase";
 
 class Signin extends React.Component {
+
+    state = {
+        email: '',
+        password: ''
+    };
+
+    static navigationOptions = {
+        title: 'Sign In'
+    };
+
+    handleEmail = (text) => {
+        let actualText = text.trim();
+        this.setState({
+            email: actualText
+        });
+        console.log(this.state);
+    };
+
+    handlePassword = (text) => {
+        this.setState({
+            password: text
+        });
+        console.log(this.state);
+    };
+
+    handleSubmit = () => {
+        let { email, password } = this.state;
+        firebase.auth().signInWithEmailAndPassword(email.trim(), password).then(result => {
+            console.log(result);
+            this.props.navigation.navigate('Dashboard');
+        }).catch(error => alert(error));
+    };
+
     render() {
         return (
             <View style={styles.container}>
-                <Text>Sign Up Here!!</Text>
+                <Text>Sign In</Text>
 
                 <Text style={styles.label}>Email</Text>
                 <TextInput style={styles.input} onChangeText={this.handleEmail} />

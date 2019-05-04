@@ -44,25 +44,6 @@ const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends React.Component {
 
-  componentDidMount() {
-    let config = {
-      apiKey: "AIzaSyDtgsFRPUsaYkLKWPfOyOH-y5xSt9gi6ZQ",
-      authDomain: "gestor-a4baa.firebaseapp.com",
-      databaseURL: "https://gestor-a4baa.firebaseio.com",
-      projectId: "gestor-a4baa",
-      storageBucket: "gestor-a4baa.appspot.com",
-      messagingSenderId: "503288975364"
-    };
-    firebase.initializeApp(config);
-    // firebase.auth().onAuthStateChanged((user) => {
-    //     if (user) {
-    //         this.props.navigation.navigate('Dashboard');
-    //     } else {
-    //         this.props.navigation.navigate('Signin');
-    //     }
-    // })
-  }
-
   render() {
     return (
       <View style={styles.container}>
