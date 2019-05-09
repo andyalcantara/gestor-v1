@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import SubmitButton from '../utils/utility-components/SubmitButton';
-import * as firebase from "firebase";
 
 class Signin extends React.Component {
 
@@ -31,17 +30,12 @@ class Signin extends React.Component {
 
     handleSubmit = () => {
         let { email, password } = this.state;
-        firebase.auth().signInWithEmailAndPassword(email.trim(), password).then(result => {
-            console.log(result);
-            this.props.navigation.navigate('Dashboard');
-        }).catch(error => alert(error));
+
     };
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Sign In</Text>
-
+            <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
                 <Text style={styles.label}>Email</Text>
                 <TextInput style={styles.input} onChangeText={this.handleEmail} />
 
@@ -49,7 +43,7 @@ class Signin extends React.Component {
                 <TextInput style={styles.input} onChangeText={this.handlePassword} />
 
                 <SubmitButton onPress={this.handleSubmit} />
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

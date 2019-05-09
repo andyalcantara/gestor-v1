@@ -6,8 +6,6 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
-import firebase from 'firebase';
-
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import Dashboard from "./components/Dashboard";

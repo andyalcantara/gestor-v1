@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, KeyboardAvoidingView, TextInput } from 'react-native';
+import { Text, StyleSheet, KeyboardAvoidingView, TextInput } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 

@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
-
-import * as firebase from 'firebase';
-import 'firebase/auth';
+import {
+    View,
+    Text,
+    TextInput,
+    StyleSheet,
+    TouchableOpacity,
+    KeyboardAvoidingView
+} from "react-native";
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 
@@ -12,25 +16,6 @@ class Signup extends React.Component {
         email: '',
         password: ''
     };
-
-    componentDidMount() {
-        let config = {
-            apiKey: "AIzaSyDtgsFRPUsaYkLKWPfOyOH-y5xSt9gi6ZQ",
-            authDomain: "gestor-a4baa.firebaseapp.com",
-            databaseURL: "https://gestor-a4baa.firebaseio.com",
-            projectId: "gestor-a4baa",
-            storageBucket: "gestor-a4baa.appspot.com",
-            messagingSenderId: "503288975364"
-        };
-        firebase.initializeApp(config);
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.props.navigation.navigate('Dashboard');
-            } else {
-                this.props.navigation.navigate('Signin');
-            }
-        });
-    }
 
     static navigationOptions = {
       title: 'Sign Up'
@@ -53,17 +38,12 @@ class Signup extends React.Component {
 
     handleSubmit = () => {
         let { email, password } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email.trim(), password).then(result => {
-            console.log(result);
-            this.props.navigation.navigate('Dashboard');
-        }).catch(error => alert(error));
+
     };
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text>Sign Up Here!!</Text>
-
+            <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
                 <Text style={styles.label}>Email</Text>
                 <TextInput style={styles.input} onChangeText={this.handleEmail} />
 
@@ -81,7 +61,7 @@ class Signup extends React.Component {
                         <Text style={styles.signin}>Login</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }
