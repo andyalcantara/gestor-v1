@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import { Text, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import SubmitButton from '../utils/utility-components/SubmitButton';
 
 class Signin extends React.Component {
@@ -18,14 +18,12 @@ class Signin extends React.Component {
         this.setState({
             email: actualText
         });
-        console.log(this.state);
     };
 
     handlePassword = (text) => {
         this.setState({
             password: text
         });
-        console.log(this.state);
     };
 
     handleSubmit = () => {
