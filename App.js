@@ -14,6 +14,10 @@ import Calculator from './components/Calculator';
 import Clinics from './components/Clinics';
 import Facturas from './components/Facturas';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+
 const StackNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Dashboard: { screen: Dashboard },
@@ -40,12 +44,16 @@ const TabNavigator = createBottomTabNavigator({
 
 const AppContainer = createAppContainer(TabNavigator);
 
+let store = createStore(reducer);
+
 export default class App extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <AppContainer />
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
       </View>
     );
   }
