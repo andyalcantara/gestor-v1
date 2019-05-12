@@ -4,10 +4,10 @@ export default function userReducer (state = {}, action) {
     switch (action.type) {
 
         case LOGIN_USER:
-            const { user } = action;
+            const { userData } = action;
             return {
                 ...state,
-                user: user.id
+                user: userData
             };
 
         default:

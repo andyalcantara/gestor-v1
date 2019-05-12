@@ -4,6 +4,7 @@ import SubmitButton from '../utils/utility-components/SubmitButton';
 
 import { saveToken } from "../utils/helpers";
 import { connect } from 'react-redux';
+import {loginUser} from "../actions/user";
 
 class Signin extends React.Component {
 
@@ -41,7 +42,7 @@ class Signin extends React.Component {
         }).then(response => response.json())
             .then(data => {
                 saveToken(data.token);
-                console.log(data.token, 'This is the token from server');
+                dispatch(loginUser(data.id));
                 navigation.navigate('Dashboard', {token: data.token});
             });
     };

@@ -5,8 +5,9 @@ export function saveToken(token) {
 }
 
 export function getToken() {
-    AsyncStorage.getItem('token').then((result) => {
-        console.log(result, 'From async storage');
-        return result.token;
-    });
+    return AsyncStorage.getItem('token')
+}
+
+export function deleteToken() {
+    return AsyncStorage.removeItem('token');
 }

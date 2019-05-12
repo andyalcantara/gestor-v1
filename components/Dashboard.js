@@ -1,27 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from "react-native";
 
 import { connect } from 'react-redux';
 
 import Clinic from '../utils/utility-components/Clinic';
 import {handleClinics} from "../actions/shared";
-import {getToken} from "../utils/helpers";
-
-const invoices = [
-    {id: '1', clinicHistory: 8438, name: 'Fulano Mengano', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '2', clinicHistory: 8431, name: 'Emet Piwitina', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '3', clinicHistory: 8432, name: 'Andy Piwitino', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '4', clinicHistory: 8433, name: 'Lizet Guajira', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '5', clinicHistory: 8434, name: 'Jane Guajira', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '6', clinicHistory: 8435, name: 'La Mami', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '7', clinicHistory: 8436, name: 'El Chacal', treatment: 'Obt', pricePerTreatment: 39.80 },
-    {id: '8', clinicHistory: 8437, name: 'Mirame pero no toques', treatment: 'Obt', pricePerTreatment: 39.80 }
-];
-
-const clinics = [
-    { id: '1', name: 'Vitaldent', pay: 23, numberOfInvoices: 8 },
-    { id: '2', name: 'Vitaldent', pay: 30, numberOfInvoices: 10 }
-];
+import {deleteToken} from "../utils/helpers";
 
 class Dashboard extends React.Component {
 
@@ -31,7 +15,10 @@ class Dashboard extends React.Component {
 
     static navigationOptions = {
         title: 'Dashboard',
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerRight: (
+            <Button title="Sign Out" onPress={() => deleteToken()} />
+        )
     };
 
     constructor(props) {
@@ -44,9 +31,15 @@ class Dashboard extends React.Component {
     }
 
     render() {
+
+        const { clinics } = this.props;
+
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.clinicButton} onPress={() => this.props.navigation.navigate('Clinics')}>
+                <TouchableOpacity
+                    style={styles.clinicButton}
+                    onPress={() => this.props.navigation.navigate('Clinics')}
+                >
                     <Text style={{color: 'white', fontWeight: 'bold'}}>Add Clinic</Text>
                 </TouchableOpacity>
 
@@ -59,7 +52,7 @@ class Dashboard extends React.Component {
                                                     pay={item.pay}
                                                     invoices={item.numberOfInvoices}
                                                 />}
-                        keyExtractor={(item) => item.id}
+                        keyExtractor={(item) => item._id}
                     />
                 </View>
             </View>
@@ -102,6 +95,9 @@ const styles = StyleSheet.create({
 
 function mapStateToProps({clinics}) {
 
+    return {
+        clinics: Object.keys(clinics).map(key => clinics[key])
+    }
 }
 
-export default connect()(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

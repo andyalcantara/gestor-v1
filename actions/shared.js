@@ -24,8 +24,6 @@ export function handleLogin(body) {
 
 export function handleClinics(token) {
 
-    console.log(getToken());
-
     return (dispatch) => {
         return fetch(url + 'clinics', {
             method: 'GET',
@@ -36,8 +34,7 @@ export function handleClinics(token) {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(token, 'THis is token');
-                console.log(data, 'This is data');
+                dispatch(getClinics(data));
             });
     }
 }

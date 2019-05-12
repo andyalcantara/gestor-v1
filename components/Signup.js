@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
+import {getToken} from "../utils/helpers";
 
 class Signup extends React.Component {
 
@@ -16,6 +17,18 @@ class Signup extends React.Component {
         email: '',
         password: ''
     };
+
+    componentDidMount() {
+        const { navigation } = this.props;
+
+        getToken().then(result => {
+            if (JSON.parse(result).token === undefined) {
+                return;
+            } else {
+                navigation.navigate('Dashboard', { token: JSON.parse(result).token});
+            }
+        });
+    }
 
     static navigationOptions = {
       title: 'Sign Up'
