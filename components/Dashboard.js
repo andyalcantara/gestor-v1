@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
+import { connect } from 'react-redux';
+
 import Clinic from '../utils/utility-components/Clinic';
+import {handleClinics} from "../actions/shared";
+import {getToken} from "../utils/helpers";
 
 const invoices = [
     {id: '1', clinicHistory: 8438, name: 'Fulano Mengano', treatment: 'Obt', pricePerTreatment: 39.80 },
@@ -21,10 +25,23 @@ const clinics = [
 
 class Dashboard extends React.Component {
 
+    state = {
+      token: ''
+    };
+
     static navigationOptions = {
         title: 'Dashboard',
         headerBackTitle: null
     };
+
+    constructor(props) {
+       super(props);
+    }
+
+    componentDidMount() {
+        let token = this.props.navigation.getParam('token');
+        this.props.dispatch(handleClinics(token));
+    }
 
     render() {
         return (
@@ -83,4 +100,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Dashboard;
+function mapStateToProps({clinics}) {
+
+}
+
+export default connect()(Dashboard);

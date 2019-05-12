@@ -1,6 +1,9 @@
 import React from 'react';
-import { Text, TextInput, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import { Text, TextInput, StyleSheet, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import SubmitButton from '../utils/utility-components/SubmitButton';
+
+import { saveToken } from "../utils/helpers";
+import { connect } from 'react-redux';
 
 class Signin extends React.Component {
 
@@ -27,8 +30,20 @@ class Signin extends React.Component {
     };
 
     handleSubmit = () => {
-        let { email, password } = this.state;
 
+        const { dispatch, navigation } = this.props;
+
+        let { email, password } = this.state;
+        fetch('http://localhost:3000/user/signin', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({email: email, password: password}),
+        }).then(response => response.json())
+            .then(data => {
+                saveToken(data.token);
+                console.log(data.token, 'This is the token from server');
+                navigation.navigate('Dashboard', {token: data.token});
+            });
     };
 
     render() {
@@ -69,4 +84,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Signin;
+export default connect()(Signin);

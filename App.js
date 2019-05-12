@@ -17,6 +17,7 @@ import Facturas from './components/Facturas';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
+import middleware from './middleware';
 
 const StackNavigator = createStackNavigator({
   Signup: { screen: Signup },
@@ -44,7 +45,7 @@ const TabNavigator = createBottomTabNavigator({
 
 const AppContainer = createAppContainer(TabNavigator);
 
-let store = createStore(reducer);
+let store = createStore(reducer, middleware);
 
 export default class App extends React.Component {
 
