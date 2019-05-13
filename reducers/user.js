@@ -1,4 +1,4 @@
-import { LOGIN_USER } from '../actions/user';
+import { LOGIN_USER, LOG_OUT_USER } from '../actions/user';
 
 export default function userReducer (state = {}, action) {
     switch (action.type) {
@@ -8,6 +8,12 @@ export default function userReducer (state = {}, action) {
             return {
                 ...state,
                 user: userData
+            };
+
+        case LOG_OUT_USER:
+            return {
+                ...state,
+                user: null
             };
 
         default:

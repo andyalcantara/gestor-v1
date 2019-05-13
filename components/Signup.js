@@ -9,7 +9,8 @@ import {
 } from "react-native";
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
-import {getToken} from "../utils/helpers";
+import {getToken, getUser} from "../utils/helpers";
+import {handleLogin} from "../actions/shared";
 
 class Signup extends React.Component {
 
@@ -19,13 +20,19 @@ class Signup extends React.Component {
     };
 
     componentDidMount() {
-        const { navigation } = this.props;
+        const { navigation, dispatch } = this.props;
 
         getToken().then(result => {
             if (JSON.parse(result).token === undefined) {
                 return;
             } else {
-                navigation.navigate('Dashboard', { token: JSON.parse(result).token});
+                getUser().then(result => {
+                   let user = JSON.parse(result).id;
+                   let token = JSON.parse(result).token;
+
+                    dispatch(handleLogin(user, token));
+                    navigation.navigate('Dashboard', { token: JSON.parse(result).token});
+                });
             }
         });
     }

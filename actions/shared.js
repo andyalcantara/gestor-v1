@@ -1,7 +1,6 @@
-import { AsyncStorage } from 'react-native';
 import { loginUser } from './user';
 import { getClinics } from "./clinic";
-import { getToken } from "../utils/helpers";
+import {getToken, saveUser} from "../utils/helpers";
 
 const url = 'http://localhost:3000/';
 
@@ -17,7 +16,8 @@ export function handleLogin(body) {
             headers: postHeader
         }).then(response => response.json())
             .then(data => {
-                dispatch(loginUser(data))
+                saveUser(data.id, data.token);
+                dispatch(loginUser(data.id, data.token))
             });
     }
 }

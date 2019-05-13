@@ -4,8 +4,11 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from "reac
 import { connect } from 'react-redux';
 
 import Clinic from '../utils/utility-components/Clinic';
+import SignOutButton from '../utils/utility-components/SignOutButton';
+
 import {handleClinics} from "../actions/shared";
 import {deleteToken} from "../utils/helpers";
+import {logOutUser} from "../actions/user";
 
 class Dashboard extends React.Component {
 
@@ -13,21 +16,30 @@ class Dashboard extends React.Component {
       token: ''
     };
 
+    handleSignOut = () => {
+        const { navigation, dispatch } = this.props;
+
+        deleteToken().then((result) => {
+            if (result) {
+                dispatch(logOutUser());
+                navigation.navigate('Signup');
+            }
+        })
+    };
+
     static navigationOptions = {
         title: 'Dashboard',
         headerBackTitle: null,
         headerRight: (
-            <Button title="Sign Out" onPress={() => deleteToken()} />
+            <SignOutButton onPress={this.handleSignOut} />
         )
     };
 
-    constructor(props) {
-       super(props);
-    }
-
     componentDidMount() {
+        const { dispatch } = this.props;
+
         let token = this.props.navigation.getParam('token');
-        this.props.dispatch(handleClinics(token));
+        dispatch(handleClinics(token));
     }
 
     render() {
