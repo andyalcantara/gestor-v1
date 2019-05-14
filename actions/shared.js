@@ -1,5 +1,5 @@
 import { loginUser } from './user';
-import { getClinics } from "./clinic";
+import { getClinics, addClinic } from "./clinic";
 import {getToken, saveUser} from "../utils/helpers";
 
 const url = 'http://localhost:3000/';
@@ -16,11 +16,14 @@ export function handleLogin(body) {
             headers: postHeader
         }).then(response => response.json())
             .then(data => {
+                console.log(data, 'Data from server!!!!!!!!!!!!');
                 saveUser(data.id, data.token);
                 dispatch(loginUser(data.id, data.token))
             });
     }
 }
+
+// Clinic related logic
 
 export function handleClinics(token) {
 
@@ -35,6 +38,22 @@ export function handleClinics(token) {
         }).then(response => response.json())
             .then(data => {
                 dispatch(getClinics(data));
+            });
+    }
+}
+
+export function createClinic(body, token) {
+    return (dispatch) => {
+        return fetch(url + 'clinic', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(addClinic(data))
             });
     }
 }

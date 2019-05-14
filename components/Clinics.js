@@ -2,6 +2,9 @@ import React from 'react';
 import { Text, StyleSheet, KeyboardAvoidingView, TextInput } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
+import { createClinic } from "../actions/shared";
+import { getUser } from "../utils/helpers";
+import { connect } from 'react-redux';
 
 class Clinics extends React.Component {
 
@@ -29,7 +32,12 @@ class Clinics extends React.Component {
     };
 
     handleSubmit = () => {
+        const { name, pay } = this.state;
+        const { navigation, dispatch } = this.props;
 
+        getUser().then(result => {
+            dispatch(createClinic({name: name, pay: pay}, result.token));
+        });
     };
 
     render() {
@@ -68,4 +76,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Clinics;
+export default connect()(Clinics);

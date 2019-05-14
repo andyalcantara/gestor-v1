@@ -9,8 +9,10 @@ import {
 } from "react-native";
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
-import {getToken, getUser} from "../utils/helpers";
-import {handleLogin} from "../actions/shared";
+import {getUser} from "../utils/helpers";
+
+import { connect } from 'react-redux';
+import {loginUser} from "../actions/user";
 
 class Signup extends React.Component {
 
@@ -22,21 +24,16 @@ class Signup extends React.Component {
     componentDidMount() {
         const { navigation, dispatch } = this.props;
 
-        getToken().then(result => {
-            if (JSON.parse(result).token === undefined) {
-                return;
-            } else {
-                getUser().then(result => {
-                    if (result) {
-                        let user = JSON.parse(result).id;
-                        let token = JSON.parse(result).token;
+        getUser().then(result => {
+            if (result) {
+                let id = JSON.parse(result).id;
+                let token = JSON.parse(result).token;
 
-                        dispatch(handleLogin(user, token));
-                        navigation.navigate('Dashboard', { token: JSON.parse(result).token});
-                    }
-                }).catch((error) => console.log(error));
+                dispatch(loginUser(id, token));
+                navigation.navigate('Dashboard', { token: token});
             }
-        });
+        }).catch((error) => console.log(error));
+
     }
 
     static navigationOptions = {
@@ -118,4 +115,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Signup;
+export default connect()(Signup);
