@@ -27,12 +27,14 @@ class Signup extends React.Component {
                 return;
             } else {
                 getUser().then(result => {
-                   let user = JSON.parse(result).id;
-                   let token = JSON.parse(result).token;
+                    if (result) {
+                        let user = JSON.parse(result).id;
+                        let token = JSON.parse(result).token;
 
-                    dispatch(handleLogin(user, token));
-                    navigation.navigate('Dashboard', { token: JSON.parse(result).token});
-                });
+                        dispatch(handleLogin(user, token));
+                        navigation.navigate('Dashboard', { token: JSON.parse(result).token});
+                    }
+                }).catch((error) => console.log(error));
             }
         });
     }
