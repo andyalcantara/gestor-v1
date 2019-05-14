@@ -26,11 +26,10 @@ class Clinics extends React.Component {
         this.setState({
             pay: pay
         });
-        console.log(pay);
     };
 
     handleSubmit = () => {
-        console.log(this.state);
+
     };
 
     render() {

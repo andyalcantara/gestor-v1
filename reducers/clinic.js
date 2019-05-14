@@ -1,4 +1,4 @@
-import {GET_CLINICS} from '../actions/clinic';
+import {GET_CLINICS, ADD_CLINIC} from '../actions/clinic';
 
 export default function clinicsReducer(state = {}, action) {
 
@@ -8,6 +8,13 @@ export default function clinicsReducer(state = {}, action) {
             return {
                 ...state,
                 ...clinics
+            };
+
+        case ADD_CLINIC:
+            const { clinic } = action;
+            return {
+                ...state,
+                [clinic.id]: clinic
             };
 
         default:
