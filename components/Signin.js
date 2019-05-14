@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, StyleSheet, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import SubmitButton from '../utils/utility-components/SubmitButton';
 
-import { saveToken } from "../utils/helpers";
+import {saveUser} from "../utils/helpers";
 import { connect } from 'react-redux';
 import {loginUser} from "../actions/user";
 
@@ -41,8 +41,8 @@ class Signin extends React.Component {
             body: JSON.stringify({email: email, password: password}),
         }).then(response => response.json())
             .then(data => {
-                saveToken(data.token);
-                dispatch(loginUser(data.id));
+                saveUser(data.id, data.token);
+                dispatch(loginUser(data.id, data.token));
                 navigation.navigate('Dashboard', {token: data.token});
             });
     };

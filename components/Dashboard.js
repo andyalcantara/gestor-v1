@@ -28,20 +28,28 @@ class Dashboard extends React.Component {
         })
     };
 
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) => ({
         title: 'Dashboard',
         headerBackTitle: null,
         headerRight: (
-            <Button
-                color="white"
-                title="Sign Out"
-                onPress={this.handleSignOut}
+            <SignOutButton
+                onPress={() => {
+                    deleteToken().then((result) => {
+                        console.log(result);
+                        navigation.state.params.dispatch(logOutUser());
+                        navigation.navigate('Signup');
+                    })
+                }}
             />
         )
-    };
+    });
 
     componentDidMount() {
-        const { dispatch } = this.props;
+        const { dispatch, navigation } = this.props;
+
+        navigation.setParams({
+            dispatch: dispatch
+        });
 
         let token = this.props.navigation.getParam('token');
         dispatch(handleClinics(token));
