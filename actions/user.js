@@ -12,19 +12,16 @@ export function loginUser(userData, token) {
     }
 }
 
-export function signUpUser(userData, token) {
+export function signUpUser(userData) {
     return {
         type: SIGN_UP_USER,
-        user: {
-            id: userData,
-            token: token
-        }
+        user: userData
     }
 }
 
 export function logOutUser() {
     return {
         type: LOG_OUT_USER,
-        userData: null
+        user: {}
     }
 }

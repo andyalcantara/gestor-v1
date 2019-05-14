@@ -4,16 +4,19 @@ export default function userReducer (state = {}, action) {
     switch (action.type) {
 
         case LOGIN_USER:
-            const { userData } = action;
+            const { user } = action;
             return {
                 ...state,
-                user: userData
+                user: {
+                    id: user.id,
+                    token: user.token
+                }
             };
 
         case LOG_OUT_USER:
             return {
                 ...state,
-                user: null
+                user: action.user
             };
 
         default:

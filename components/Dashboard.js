@@ -20,6 +20,7 @@ class Dashboard extends React.Component {
         const { navigation, dispatch } = this.props;
 
         deleteToken().then((result) => {
+            console.log(result);
             if (result) {
                 dispatch(logOutUser());
                 navigation.navigate('Signup');
@@ -31,7 +32,11 @@ class Dashboard extends React.Component {
         title: 'Dashboard',
         headerBackTitle: null,
         headerRight: (
-            <SignOutButton onPress={this.handleSignOut} />
+            <Button
+                color="white"
+                title="Sign Out"
+                onPress={this.handleSignOut}
+            />
         )
     };
 
