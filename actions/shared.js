@@ -1,6 +1,6 @@
 import { loginUser } from './user';
-import { getClinics, addClinic } from "./clinic";
-import {getToken, saveUser} from "../utils/helpers";
+import { getClinics, addClinic, deleteClinic } from "./clinic";
+import {saveUser} from "../utils/helpers";
 
 const url = 'http://localhost:3000/';
 
@@ -56,6 +56,22 @@ export function createClinic(body, token) {
             .then(data => {
                 console.log(data, 'This is the data returned');
                 dispatch(addClinic(data))
+            });
+    }
+}
+
+export function eraseClinic(id, token) {
+    return (dispatch) => {
+        return fetch(url + 'clinic/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(deleteClinic(data._id))
             });
     }
 }

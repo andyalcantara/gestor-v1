@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import Clinic from '../utils/utility-components/Clinic';
 import SignOutButton from '../utils/utility-components/SignOutButton';
 
-import {handleClinics} from "../actions/shared";
-import {deleteToken} from "../utils/helpers";
+import {handleClinics, eraseClinic} from "../actions/shared";
+import {deleteToken, getUser} from "../utils/helpers";
 import {logOutUser} from "../actions/user";
 
 class Dashboard extends React.Component {
@@ -16,16 +16,12 @@ class Dashboard extends React.Component {
       token: ''
     };
 
-    handleSignOut = () => {
-        const { navigation, dispatch } = this.props;
-
-        deleteToken().then((result) => {
-            console.log(result);
-            if (result) {
-                dispatch(logOutUser());
-                navigation.navigate('Signup');
-            }
-        })
+    handleDelete = (id) => {
+        const { dispatch } = this.props;
+        getUser().then(result => {
+            let token = JSON.parse(result).token;
+            dispatch(eraseClinic(id, token))
+        });
     };
 
     static navigationOptions = ({navigation}) => ({
@@ -76,6 +72,7 @@ class Dashboard extends React.Component {
                                                     name={item.name}
                                                     pay={item.pay}
                                                     invoices={item.numberOfInvoices}
+                                                    onDelete={this.handleDelete}
                                                 />}
                         keyExtractor={(item) => item._id}
                     />
