@@ -8,6 +8,10 @@ const Clinic = (props) => {
                 <Text>Name: {props.name}</Text>
                 <Text>Salary: {props.pay}</Text>
                 <Text>{props.invoices} invoices</Text>
+
+                <TouchableOpacity onPress={props.onDelete}>
+                    <Text style={{color: 'fuchsia'}}>Delete</Text>
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     );
@@ -15,6 +19,7 @@ const Clinic = (props) => {
 
 const styles = StyleSheet.create({
    container: {
+       flex: 1,
        flexDirection: 'row',
        alignItems: 'center',
        justifyContent: 'space-evenly'
