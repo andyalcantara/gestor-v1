@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d12bf7-03c0-4c26-bb66-dea4e3f335a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/actions/clinic.js" beforeDir="false" afterPath="$PROJECT_DIR$/actions/clinic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utility-components/Clinic.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utility-components/Clinic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reducers/clinic.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/clinic.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,6 +15,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reducers/clinic.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Signup.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -42,15 +49,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/helpers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/actions/clinic.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -161,12 +159,12 @@
         <option value="$PROJECT_DIR$/actions/user.js" />
         <option value="$PROJECT_DIR$/components/Signin.js" />
         <option value="$PROJECT_DIR$/components/Signup.js" />
-        <option value="$PROJECT_DIR$/reducers/clinic.js" />
         <option value="$PROJECT_DIR$/components/Dashboard.js" />
         <option value="$PROJECT_DIR$/actions/shared.js" />
         <option value="$PROJECT_DIR$/components/Clinics.js" />
         <option value="$PROJECT_DIR$/utils/utility-components/Clinic.js" />
         <option value="$PROJECT_DIR$/actions/clinic.js" />
+        <option value="$PROJECT_DIR$/reducers/clinic.js" />
       </list>
     </option>
   </component>
@@ -260,12 +258,12 @@
       <workItem from="1557594949686" duration="19225000" />
       <workItem from="1557756164748" duration="2842000" />
       <workItem from="1557865678792" duration="4614000" />
-      <workItem from="1557951770243" duration="3110000" />
+      <workItem from="1557951770243" duration="3307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55796000" />
+    <option name="totallyTimeSpent" value="55993000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1920" height="1080" extended-state="0" />
@@ -403,13 +401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reducers/clinic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/helpers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -498,6 +489,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="45" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reducers/clinic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
         </state>
       </provider>
     </entry>

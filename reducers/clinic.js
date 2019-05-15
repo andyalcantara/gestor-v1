@@ -1,4 +1,4 @@
-import {GET_CLINICS, ADD_CLINIC} from '../actions/clinic';
+import {GET_CLINICS, ADD_CLINIC, DELETE_CLINIC} from '../actions/clinic';
 
 export default function clinicsReducer(state = {}, action) {
 
@@ -15,6 +15,15 @@ export default function clinicsReducer(state = {}, action) {
             return {
                 ...state,
                 [clinic.id]: clinic
+            };
+
+        case DELETE_CLINIC:
+
+            let updatedState = {...state};
+            delete updatedState[action.id];
+
+            return {
+                ...updatedState
             };
 
         default:
