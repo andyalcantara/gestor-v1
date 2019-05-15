@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
                                                     name={item.name}
                                                     pay={item.pay}
                                                     invoices={item.numberOfInvoices}
-                                                    onDelete={this.handleDelete}
+                                                    onDelete={() => this.handleDelete(item._id)}
                                                 />}
                         keyExtractor={(item) => item._id}
                     />
