@@ -50,9 +50,11 @@ export function createClinic(body, token) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
-            }
+            },
+            body: JSON.stringify(body)
         }).then(response => response.json())
             .then(data => {
+                console.log(data, 'This is the data returned');
                 dispatch(addClinic(data))
             });
     }

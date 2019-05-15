@@ -24,10 +24,8 @@ class Clinics extends React.Component {
     };
 
     handlePay = (text) => {
-        let textToParse = `0.${text}`;
-        let pay = parseFloat(textToParse);
         this.setState({
-            pay: pay
+            pay: text
         });
     };
 
@@ -36,7 +34,12 @@ class Clinics extends React.Component {
         const { navigation, dispatch } = this.props;
 
         getUser().then(result => {
-            dispatch(createClinic({name: name, pay: pay}, result.token));
+            if (result) {
+                const storage = JSON.parse(result);
+                console.log(storage);
+                dispatch(createClinic({name: name, pay: pay}, storage['token']));
+                navigation.goBack();
+            }
         });
     };
 

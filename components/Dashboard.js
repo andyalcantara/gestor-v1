@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
 
     render() {
 
-        const { clinics } = this.props;
+        const { clinics, navigation } = this.props;
 
         return (
             <View style={styles.container}>
@@ -72,7 +72,7 @@ class Dashboard extends React.Component {
                     <FlatList
                         data={clinics}
                         renderItem={({item}) => <Clinic
-                                                    onPress={() => this.props.navigation.navigate('Facturas', {invoices: invoices})}
+                                                    onPress={() => navigation.navigate('Facturas', {invoices: invoices})}
                                                     name={item.name}
                                                     pay={item.pay}
                                                     invoices={item.numberOfInvoices}
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({clinics}) {
-
+    console.log(Object.keys(clinics).map(key => clinics[key]));
     return {
         clinics: Object.keys(clinics).map(key => clinics[key])
     }
