@@ -1,6 +1,7 @@
 import { loginUser } from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
+import {addInvoice} from "./invoice";
 
 const url = 'http://localhost:3000/';
 
@@ -72,6 +73,25 @@ export function eraseClinic(id, token) {
         }).then(response => response.json())
             .then(data => {
                 dispatch(deleteClinic(data._id))
+            });
+    }
+}
+
+////////////////// Invoice Sectino /////////////////////
+
+export function createInvoice(clinicId, token, body) {
+    return (dispatch) => {
+        return fetch(url + 'clinic/' + clinicId + '/invoice', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(body)
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(addInvoice(data))
             });
     }
 }
