@@ -5,16 +5,24 @@ export default function clinicsReducer(state = {}, action) {
     switch (action.type) {
         case GET_CLINICS:
             const { clinics } = action;
+
+            let arrayClinics = Object.keys(clinics).map(key => clinics[key]);
+            let theClinics = {};
+
+            for (let i = 0; i < arrayClinics.length; i++) {
+                theClinics[arrayClinics[i]._id] = arrayClinics[i];
+            }
+
             return {
                 ...state,
-                ...clinics
+                ...theClinics
             };
 
         case ADD_CLINIC:
             const { clinic } = action;
             return {
                 ...state,
-                [clinic.id]: clinic
+                [clinic._id]: clinic
             };
 
         case DELETE_CLINIC:

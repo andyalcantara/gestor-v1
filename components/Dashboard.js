@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({clinics}) {
-    console.log(Object.keys(clinics).map(key => clinics[key]));
+
     return {
         clinics: Object.keys(clinics).map(key => clinics[key])
     }
