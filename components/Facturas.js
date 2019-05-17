@@ -27,6 +27,7 @@ class Facturas extends React.Component {
     }
 
     render() {
+        const { invoices } = this.props;
 
         return (
             <View style={styles.container}>
@@ -69,8 +70,11 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapDispatchToProps() {
+function mapStateToProps({invoices}) {
 
+    return {
+        invoices: Object.keys(invoices).map(key => invoices[key])
+    }
 }
 
-export default connect()(Facturas);
+export default connect(mapStateToProps)(Facturas);

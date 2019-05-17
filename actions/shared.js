@@ -1,4 +1,4 @@
-import { loginUser } from './user';
+import {loginUser, logOutUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
 import {addInvoice} from "./invoice";
@@ -37,6 +37,9 @@ export function handleClinics(token) {
             }
         }).then(response => response.json())
             .then(data => {
+                if (typeof data === 'String') {
+                    dispatch(logOutUser());
+                }
                 dispatch(getClinics(data));
             });
     }

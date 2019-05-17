@@ -12,6 +12,10 @@ export function getUser() {
     return AsyncStorage.getItem('user');
 }
 
+export function deleteUser() {
+    return AsyncStorage.removeItem('user');
+}
+
 export function getToken() {
     return AsyncStorage.getItem('token');
 }

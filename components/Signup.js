@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
-import {getUser} from "../utils/helpers";
+import {deleteUser, getUser} from "../utils/helpers";
 
 import { connect } from 'react-redux';
 import {loginUser} from "../actions/user";
@@ -33,7 +33,9 @@ class Signup extends React.Component {
                 dispatch(loginUser(id, token));
                 navigation.navigate('Dashboard', { token: token});
             } else {
-                navigation.navigate('Signup')
+                deleteUser().then(() => {
+                    navigation.navigate('Signup');
+                });
             }
         }).catch((error) => console.log(error));
 
