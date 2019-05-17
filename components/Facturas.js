@@ -23,29 +23,34 @@ class Facturas extends React.Component {
             if (user) {
                 dispatch(grabInvoices(clinicId, user.id, user.token));
             }
-        })
+        });
     }
 
     render() {
-        const { invoices } = this.props;
+        const { invoices, navigation } = this.props;
+        let clinicId = navigation.getParam('clinicId');
+
+        let acInvoices = invoices.filter(invoice => {
+            return invoice.clinic === clinicId;
+        });
 
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.invoiceButton} onPress={() => this.props.navigation.navigate('Factura')}>
+                <TouchableOpacity style={styles.invoiceButton} onPress={() => this.props.navigation.navigate('Factura', {clinicId: clinicId})}>
                     <Text style={{color: 'white'}}>Add Invoice</Text>
                 </TouchableOpacity>
 
                 <FlatList
                     style={{marginTop: 30}}
-                    data={invoices}
+                    data={acInvoices}
                     renderItem={({item}) => <Invoice
                                                 onPress={() => alert('I was pressed!')}
                                                 name={item.name}
                                                 hc={item.clinicHistory}
                                                 tto={item.treatment}
-                                                price={item.pricePerTreatment}
+                                                price={item.price}
                                             />}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item._id}
                 />
             </View>
         );

@@ -1,7 +1,7 @@
 import {loginUser, logOutUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
-import {addInvoice} from "./invoice";
+import {addInvoice, getInvoices} from "./invoice";
 
 const url = 'http://localhost:3000/';
 
@@ -92,6 +92,7 @@ export function grabInvoices(clinicId, userId, token) {
             }
         }).then(response => response.json())
             .then(data => {
+                console.log(data, '//////////////This is data from server///////////');
                 dispatch(getInvoices(data))
             });
     }
@@ -99,7 +100,7 @@ export function grabInvoices(clinicId, userId, token) {
 
 export function createInvoice(clinicId, token, body) {
     return (dispatch) => {
-        return fetch(url + 'clinic/' + clinicId + '/invoice', {
+        return fetch(url + clinicId + '/invoice', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

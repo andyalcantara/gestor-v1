@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
+import {getUser} from "../utils/helpers";
+import {createInvoice} from "../actions/shared";
+import { connect } from "react-redux";
 
 class Factura extends React.Component {
 
@@ -17,9 +20,8 @@ class Factura extends React.Component {
     };
 
     handleHC = (text) => {
-        const textToNumber = parseInt(text.trim());
         this.setState({
-            hc: textToNumber
+            hc: text
         });
     };
 
@@ -36,19 +38,22 @@ class Factura extends React.Component {
     };
 
     handlePrice = (text) => {
-        const price = parseInt(text.trim());
         this.setState({
-            precio: price
+            precio: text
         });
     };
 
     handleSubmit = () => {
-        let invoice = this.state;
-        console.log(invoice);
+        const { hc, name, tratamiento, precio } = this.state;
+        const { dispatch, navigation } = this.props;
 
-        // TODO: API call post request to create new invoice
-        // TODO: clear form
-        // TODO: Navigate back to Dashboard
+        let clinicId = navigation.getParam('clinicId');
+        console.log(clinicId, 'CLinic id from Factura');
+        getUser().then(result => {
+            let user = JSON.parse(result);
+            dispatch(createInvoice(clinicId, user.token, {clinicHistory: hc, name: name, treatment: tratamiento, price: precio}));
+            navigation.goBack();
+        });
     };
 
     render() {
@@ -92,4 +97,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Factura;
+export default connect()(Factura);
