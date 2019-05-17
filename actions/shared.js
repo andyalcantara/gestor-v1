@@ -17,7 +17,6 @@ export function handleLogin(body) {
             headers: postHeader
         }).then(response => response.json())
             .then(data => {
-                console.log(data, 'Data from server!!!!!!!!!!!!');
                 saveUser(data.id, data.token);
                 dispatch(loginUser(data.id, data.token))
             });

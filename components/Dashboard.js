@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
             dispatch: dispatch
         });
 
-        let token = this.props.navigation.getParam('token');
+        let token = navigation.getParam('token');
         dispatch(handleClinics(token));
     }
 

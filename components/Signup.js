@@ -25,12 +25,15 @@ class Signup extends React.Component {
         const { navigation, dispatch } = this.props;
 
         getUser().then(result => {
-            if (result) {
-                let id = JSON.parse(result).id;
-                let token = JSON.parse(result).token;
+            console.log(result, 'THIS IS RESULT FROM AUTO SIGN IN');
+            let id = JSON.parse(result).id;
+            let token = JSON.parse(result).token;
 
+            if (id && token) {
                 dispatch(loginUser(id, token));
                 navigation.navigate('Dashboard', { token: token});
+            } else {
+                navigation.navigate('Signup')
             }
         }).catch((error) => console.log(error));
 
