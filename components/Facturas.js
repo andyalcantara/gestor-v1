@@ -1,19 +1,32 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 
+import { connect } from 'react-redux';
+
 import Invoice from '../utils/utility-components/Invoice';
+import {getUser} from "../utils/helpers";
+import {grabInvoices} from "../actions/shared";
 
 class Facturas extends React.Component {
 
     static navigationOptions = {
-      title: 'Facturas',
+        title: 'Facturas',
         headerBackTitle: null
     };
 
-    render() {
+    componentDidMount() {
+        const { navigation, dispatch } = this.props;
+        let clinicId = navigation.getParam('clinicId');
 
-        const { navigation } = this.props;
-        let invoices = navigation.getParam('invoices', []);
+        getUser().then(result => {
+            let user = JSON.parse(result);
+            if (user) {
+                dispatch(grabInvoices(clinicId, user.id, user.token));
+            }
+        })
+    }
+
+    render() {
 
         return (
             <View style={styles.container}>
@@ -56,4 +69,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Facturas;
+function mapDispatchToProps() {
+
+}
+
+export default connect()(Facturas);

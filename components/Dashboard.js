@@ -68,7 +68,7 @@ class Dashboard extends React.Component {
                     <FlatList
                         data={clinics}
                         renderItem={({item}) => <Clinic
-                                                    onPress={() => navigation.navigate('Facturas', {invoices: invoices})}
+                                                    onPress={() => navigation.navigate('Facturas', { clinicId: item._id})}
                                                     name={item.name}
                                                     pay={item.pay}
                                                     invoices={item.numberOfInvoices}

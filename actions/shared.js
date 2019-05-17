@@ -78,6 +78,22 @@ export function eraseClinic(id, token) {
 
 ////////////////// Invoice Sectino /////////////////////
 
+export function grabInvoices(clinicId, userId, token) {
+    return (dispatch) => {
+        return fetch(url + clinicId + '/invoices', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(getInvoices(data))
+            });
+    }
+}
+
 export function createInvoice(clinicId, token, body) {
     return (dispatch) => {
         return fetch(url + 'clinic/' + clinicId + '/invoice', {
