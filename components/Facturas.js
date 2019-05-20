@@ -9,14 +9,26 @@ import {grabInvoices} from "../actions/shared";
 
 class Facturas extends React.Component {
 
+    state = {
+      clinicInvoices: []
+    };
+
     static navigationOptions = {
         title: 'Facturas',
         headerBackTitle: null
     };
 
     componentDidMount() {
-        const { navigation, dispatch } = this.props;
+        const { navigation, dispatch, invoices } = this.props;
         let clinicId = navigation.getParam('clinicId');
+
+        let acInvoices = invoices.filter(invoice => {
+            return invoice.clinic === clinicId;
+        });
+
+        this.setState({
+            clinicInvoices: acInvoices
+        });
 
         getUser().then(result => {
             let user = JSON.parse(result);
@@ -26,10 +38,21 @@ class Facturas extends React.Component {
         });
     }
 
+    handleIncomeCalc = (id) => {
+        const { invoices } = this.props;
+
+        let acInvoices = invoices.filter(invoice => {
+            return invoice.clinic === id;
+        });
+        const reducer = (accumulator, value) => accumulator + parseFloat(value.price);
+
+        let total = acInvoices.reduce(reducer, 0);
+        console.log(total);
+    };
+
     render() {
         const { invoices, navigation } = this.props;
         let clinicId = navigation.getParam('clinicId');
-
         let acInvoices = invoices.filter(invoice => {
             return invoice.clinic === clinicId;
         });
@@ -52,6 +75,10 @@ class Facturas extends React.Component {
                                             />}
                     keyExtractor={(item) => item._id}
                 />
+
+                <TouchableOpacity style={styles.invoiceButton} onPress={() => this.handleIncomeCalc(clinicId)}>
+                    <Text style={{color: 'white'}}>Calculate Income</Text>
+                </TouchableOpacity>
             </View>
         );
     }

@@ -40,7 +40,7 @@ const StackNavigator = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator({
   Pacientes: { screen: StackNavigator },
-  Calculator: { screen: Calculator }
+  Total: { screen: Calculator }
 });
 
 const AppContainer = createAppContainer(TabNavigator);

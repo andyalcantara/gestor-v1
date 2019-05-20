@@ -51,6 +51,11 @@ class Dashboard extends React.Component {
         dispatch(handleClinics(token));
     }
 
+    handleClinicSelection = (clinic) => {
+        const { navigation } = this.props;
+        navigation.navigate('Facturas', { clinicId: clinic._id});
+    };
+
     render() {
 
         const { clinics, navigation } = this.props;
@@ -68,7 +73,7 @@ class Dashboard extends React.Component {
                     <FlatList
                         data={clinics}
                         renderItem={({item}) => <Clinic
-                                                    onPress={() => navigation.navigate('Facturas', { clinicId: item._id})}
+                                                    onPress={() => this.handleClinicSelection(item)}
                                                     name={item.name}
                                                     pay={item.pay}
                                                     invoices={item.numberOfInvoices}

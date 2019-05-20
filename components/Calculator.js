@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, SafeAreaView } from "react-native";
 
 class Calculator extends React.Component {
     render() {
         return (
-            <View>
+            <SafeAreaView>
                 <Text>Calculator Component</Text>
-            </View>
+            </SafeAreaView>
         );
     }
 }

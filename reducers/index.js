@@ -6,5 +6,5 @@ import invoiceReducer from "./invoice";
 export default combineReducers({
     user: userReducer,
     clinics: clinicsReducer,
-    invoices: invoiceReducer
+    invoices: invoiceReducer,
 });
