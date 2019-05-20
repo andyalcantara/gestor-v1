@@ -9,6 +9,19 @@ const postHeader = {
     'Content-Type': 'application/json'
 };
 
+export function handleSignup(body) {
+    return (dispatch) => {
+        return fetch(url + '/signup', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: postHeader
+        }).then(response => response.json())
+            .then(data => {
+                console.log('this is the data', data);
+            });
+    }
+}
+
 export function handleLogin(body) {
     return (dispatch) => {
         return fetch(url + '/signin', {
@@ -37,7 +50,7 @@ export function handleClinics(token) {
             }
         }).then(response => response.json())
             .then(data => {
-                if (typeof data === 'String') {
+                if (typeof data.message === 'Token is not valid') {
                     dispatch(logOutUser());
                 }
                 dispatch(getClinics(data));
