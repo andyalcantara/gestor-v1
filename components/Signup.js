@@ -25,19 +25,31 @@ class Signup extends React.Component {
         const { navigation, dispatch } = this.props;
 
         getUser().then(result => {
-            console.log(result, 'THIS IS RESULT FROM AUTO SIGN IN');
-            let id = JSON.parse(result).id;
             let token = JSON.parse(result).token;
 
-            if (id && token) {
-                dispatch(loginUser(id, token));
-                navigation.navigate('Dashboard', { token: token});
-            } else {
-                deleteUser().then(() => {
-                    navigation.navigate('Signup');
+            fetch('http://localhost:3000/user/checkToken', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+            }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        let id = JSON.parse(result).id;
+
+                        if (data.token === token) {
+                            dispatch(loginUser(id, token));
+                            navigation.navigate('Dashboard', { token: token});
+                        }
+                    } else {
+                        deleteUser().then(() => {
+                            navigation.navigate('Signup');
+                        });
+                    }
                 });
-            }
-        }).catch((error) => console.log(error));
+        })
     }
 
     static navigationOptions = {

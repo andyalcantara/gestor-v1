@@ -31,7 +31,7 @@ export function handleLogin(body) {
         }).then(response => response.json())
             .then(data => {
                 saveUser(data.id, data.token);
-                dispatch(loginUser(data.id, data.token))
+                dispatch(loginUser(data.id, data.token));
             });
     }
 }
