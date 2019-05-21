@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Clinic from '../utils/utility-components/Clinic';
 import SignOutButton from '../utils/utility-components/SignOutButton';
 
-import {handleClinics, eraseClinic} from "../actions/shared";
+import {handleClinics, eraseClinic, grabAllInvoices} from "../actions/shared";
 import {deleteToken, getUser} from "../utils/helpers";
 import {logOutUser} from "../actions/user";
 
@@ -26,6 +26,7 @@ class Dashboard extends React.Component {
 
     static navigationOptions = ({navigation}) => ({
         title: 'Dashboard',
+        headerLeft: null,
         headerBackTitle: null,
         headerRight: (
             <SignOutButton
@@ -49,6 +50,7 @@ class Dashboard extends React.Component {
 
         let token = navigation.getParam('token');
         dispatch(handleClinics(token));
+        dispatch(grabAllInvoices(token));
     }
 
     handleClinicSelection = (clinic) => {

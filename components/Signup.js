@@ -21,6 +21,10 @@ class Signup extends React.Component {
         password: ''
     };
 
+    static navigationOptions = {
+      headerBackTitle: null
+    };
+
     componentDidMount() {
         const { navigation, dispatch } = this.props;
 

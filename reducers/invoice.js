@@ -1,4 +1,4 @@
-import {ADD_INVOICE, GET_INVOICES} from "../actions/invoice";
+import {ADD_INVOICE, GET_ALL_INVOICES, GET_INVOICES} from "../actions/invoice";
 
 export default function invoiceReducer(state = {}, action) {
     switch (action.type) {
@@ -23,6 +23,21 @@ export default function invoiceReducer(state = {}, action) {
             return {
               ...state,
               ...objInvoices
+            };
+
+        case GET_ALL_INVOICES:
+            const { allInvoices } = action;
+
+            let objAllInvoices = {};
+            let arrayAllInvoices = Object.keys(allInvoices).map(key => allInvoices[key]);
+
+            for (let i = 0; i < arrayAllInvoices.length; i++) {
+                objAllInvoices[arrayAllInvoices[i]._id] = arrayAllInvoices[i];
+            }
+
+            return {
+                ...state,
+                ...objAllInvoices
             };
 
         default:

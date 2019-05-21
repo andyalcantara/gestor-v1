@@ -14,7 +14,8 @@ class Signin extends React.Component {
     };
 
     static navigationOptions = {
-        title: 'Sign In'
+        title: 'Sign In',
+        headerBackTitle: null
     };
 
     handleEmail = (text) => {

@@ -1,7 +1,7 @@
 import {loginUser, logOutUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
-import {addInvoice, getInvoices} from "./invoice";
+import {addInvoice, getInvoices, getAllInvoices} from "./invoice";
 
 const url = 'http://localhost:3000/';
 
@@ -92,7 +92,7 @@ export function eraseClinic(id, token) {
     }
 }
 
-////////////////// Invoice Sectino /////////////////////
+////////////////// Invoice Section /////////////////////
 
 export function grabInvoices(clinicId, userId, token) {
     return (dispatch) => {
@@ -107,6 +107,22 @@ export function grabInvoices(clinicId, userId, token) {
             .then(data => {
                 console.log(data, '//////////////This is data from server///////////');
                 dispatch(getInvoices(data))
+            });
+    }
+}
+
+export function grabAllInvoices(token) {
+    return (dispatch) => {
+        return fetch(url + 'allInvoices', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(getAllInvoices(data))
             });
     }
 }
