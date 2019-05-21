@@ -7,7 +7,7 @@ class Calculator extends React.Component {
 
     render() {
 
-        const { invoices, clinics, sectionListData, total } = this.props;
+        const { invoices, clinics, sectionListData, total, totalIncome } = this.props;
 
         return (
             <SafeAreaView>
@@ -29,7 +29,7 @@ class Calculator extends React.Component {
                 />
 
                 <Text>Total facturado: {total}</Text>
-                <Text>Total para casa: </Text>
+                <Text>Total para casa: {totalIncome}</Text>
 
             </SafeAreaView>
         );
@@ -37,6 +37,8 @@ class Calculator extends React.Component {
 }
 
 function mapStateToProps({ invoices, clinics }) {
+
+    let incomes = [];
 
     // Manipulating data from store
     let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
@@ -57,16 +59,28 @@ function mapStateToProps({ invoices, clinics }) {
 
     let theClinics = Object.keys(clinics).map(key => clinics[key]);
     for (let i = 0; i < theClinics.length; i++) {
-        (function(j){
+        let clinic = theClinics[i];
+        let invoices = invoicesArray.filter(invoice => invoice.clinic === clinic._id);
 
-        })(i)
+        let subTotal = invoices.reduce(reducer, 0);
+        let income = subTotal * clinic.pay;
+        let acIncome = {
+            name: clinic.name,
+            income: income
+        };
+
+        incomes.push(acIncome);
     }
+
+    const incomeReducer = (accumulator, value) => accumulator + value.income;
+    let totalIncome = incomes.reduce(incomeReducer, 0);
 
     return {
         invoices: Object.keys(invoices).map(key => invoices[key]),
         clinics: Object.keys(clinics).map(key => clinics[key]),
         sectionListData: acClinics,
-        total: total
+        total: total,
+        totalIncome: totalIncome
     }
 }
 
