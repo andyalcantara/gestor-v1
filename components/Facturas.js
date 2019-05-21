@@ -86,6 +86,9 @@ class Facturas extends React.Component {
                     keyExtractor={(item) => item._id}
                 />
 
+                {show ? <Text>Total Facturado: {total}</Text> : <Text></Text>}
+                {show ? <Text>Total Income: {income}</Text> : <Text></Text>}
+
                 <TouchableOpacity style={styles.invoiceButton} onPress={() => this.handleIncomeCalc(clinicId)}>
                     <Text style={{color: 'white'}}>Calculate Total</Text>
                 </TouchableOpacity>
