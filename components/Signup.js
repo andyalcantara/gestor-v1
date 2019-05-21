@@ -22,43 +22,42 @@ class Signup extends React.Component {
     };
 
     static navigationOptions = {
-      headerBackTitle: null
+        title: 'Sign Up',
+        headerBackTitle: null
     };
 
     componentDidMount() {
         const { navigation, dispatch } = this.props;
 
         getUser().then(result => {
-            let token = JSON.parse(result).token;
+            if (result !== null) {
+                let token = JSON.parse(result).token;
 
-            fetch('http://localhost:3000/user/checkToken', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
-                }
-            }).then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        let id = JSON.parse(result).id;
-
-                        if (data.token === token) {
-                            dispatch(loginUser(id, token));
-                            navigation.navigate('Dashboard', { token: token});
-                        }
-                    } else {
-                        deleteUser().then(() => {
-                            navigation.navigate('Signup');
-                        });
+                fetch('http://localhost:3000/user/checkToken', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
                     }
-                });
-        })
-    }
+                }).then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            let id = JSON.parse(result).id;
 
-    static navigationOptions = {
-      title: 'Sign Up'
-    };
+                            if (data.token === token) {
+                                dispatch(loginUser(id, token));
+                                navigation.navigate('Dashboard', { token: token});
+                            }
+                        } else {
+                            deleteUser().then(() => {
+                                navigation.navigate('Signup');
+                            });
+                        }
+                    });
+            }
+        }).catch(error => console.log(error));
+    }
 
     handleEmail = (text) => {
         let actualText = text.trim();
