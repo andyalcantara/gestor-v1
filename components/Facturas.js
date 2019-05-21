@@ -69,7 +69,10 @@ class Facturas extends React.Component {
 
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={styles.invoiceButton} onPress={() => this.props.navigation.navigate('Factura', {clinicId: clinicId})}>
+                <TouchableOpacity
+                    style={styles.invoiceButton}
+                    onPress={() => this.props.navigation.navigate('Factura', {clinicId: clinicId})}
+                >
                     <Text style={{color: 'white'}}>Add Invoice</Text>
                 </TouchableOpacity>
 
@@ -116,6 +119,13 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ invoices, clinics}) {
+
+    let date = new Date();
+
+    let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
+    let acInvoices = invoicesArray.filter(invoice => {
+
+    });
 
     return {
         invoices: Object.keys(invoices).map(key => invoices[key]),

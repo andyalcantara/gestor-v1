@@ -7,7 +7,7 @@ class Calculator extends React.Component {
 
     render() {
 
-        const { invoices, clinics, sectionListData, total, totalIncome } = this.props;
+        const { sectionListData, total, totalIncome } = this.props;
 
         return (
             <SafeAreaView>
