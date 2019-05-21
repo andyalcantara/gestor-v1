@@ -10,7 +10,10 @@ import {grabInvoices} from "../actions/shared";
 class Facturas extends React.Component {
 
     state = {
-      clinicInvoices: []
+        clinicInvoices: [],
+        total: 0,
+        income: 0,
+        show: false
     };
 
     static navigationOptions = {
@@ -39,7 +42,7 @@ class Facturas extends React.Component {
     }
 
     handleIncomeCalc = (id) => {
-        const { invoices } = this.props;
+        const { invoices, clinics } = this.props;
 
         let acInvoices = invoices.filter(invoice => {
             return invoice.clinic === id;
@@ -47,11 +50,18 @@ class Facturas extends React.Component {
         const reducer = (accumulator, value) => accumulator + parseFloat(value.price);
 
         let total = acInvoices.reduce(reducer, 0);
-        console.log(total);
+        let income = total * clinics[id].pay;
+        this.setState({
+            total: total,
+            income: income,
+            show: true
+        });
     };
 
     render() {
         const { invoices, navigation } = this.props;
+        const { total, show, income } = this.state;
+
         let clinicId = navigation.getParam('clinicId');
         let acInvoices = invoices.filter(invoice => {
             return invoice.clinic === clinicId;
@@ -77,7 +87,7 @@ class Facturas extends React.Component {
                 />
 
                 <TouchableOpacity style={styles.invoiceButton} onPress={() => this.handleIncomeCalc(clinicId)}>
-                    <Text style={{color: 'white'}}>Calculate Income</Text>
+                    <Text style={{color: 'white'}}>Calculate Total</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -102,10 +112,11 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapStateToProps({invoices}) {
+function mapStateToProps({ invoices, clinics}) {
 
     return {
-        invoices: Object.keys(invoices).map(key => invoices[key])
+        invoices: Object.keys(invoices).map(key => invoices[key]),
+        clinics: clinics
     }
 }
 
