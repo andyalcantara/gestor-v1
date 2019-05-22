@@ -37,6 +37,8 @@ class Facturas extends React.Component {
             let user = JSON.parse(result);
             if (user) {
                 dispatch(grabInvoices(clinicId, user.id, user.token));
+            } else {
+                navigation.navigate('Signup');
             }
         });
     }
