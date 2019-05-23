@@ -122,15 +122,17 @@ const styles = StyleSheet.create({
 
 function mapStateToProps({ invoices, clinics}) {
 
-    let date = new Date();
-
     let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
     let acInvoices = invoicesArray.filter(invoice => {
 
     });
 
     return {
-        invoices: Object.keys(invoices).map(key => invoices[key]),
+        invoices: Object.keys(invoices).map(key => invoices[key]).sort((a, b) => {
+            let aDate = new Date(a.date);
+            let bDate = new Date(b.date);
+            return bDate - aDate;
+        }),
         clinics: clinics
     }
 }

@@ -8,17 +8,23 @@ class Calculator extends React.Component {
     render() {
 
         const { sectionListData, total, totalIncome } = this.props;
+        let date = new Date();
+        let acDate = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(date);
 
         return (
             <SafeAreaView>
                 <Text>Here you can find the whole Income of your clinics</Text>
-
+                <Text>For month: {acDate}</Text>
                 <SectionList
-                    renderItem={({item, index, section}) => (
-                        <View>
-                            <Text>{item.price}</Text>
-                        </View>
-                    )}
+                    renderItem={({item, index, section}) => {
+                        let itemDate = new Date(item.date);
+                        let itemMonth = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(itemDate);
+                        return (
+                            <View>
+                                <Text>{acDate === itemMonth ? item.price : ''}</Text>
+                            </View>
+                        );
+                    }}
                     renderSectionHeader={({section: {name}}) => (
                         <View style={styles.containerHeader}>
                             <Text style={styles.headerSection}>{name}</Text>
@@ -39,9 +45,16 @@ class Calculator extends React.Component {
 function mapStateToProps({ invoices, clinics }) {
 
     let incomes = [];
+    let dateMonth = new Date().getMonth();
 
     // Manipulating data from store
     let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
+    let invoicesMonthArray = invoicesArray.filter(invoice => {
+        let invoiceDate = new Date(invoice.date).getMonth();
+        return dateMonth === invoiceDate;
+    });
+
+    console.log(invoicesMonthArray.length, 'These are my month arrray invoices');
 
     let acClinics = Object.keys(clinics).map(key => clinics[key])
         .map(clinic => {
