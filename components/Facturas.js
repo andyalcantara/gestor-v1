@@ -16,10 +16,10 @@ class Facturas extends React.Component {
         show: false
     };
 
-    static navigationOptions = {
-        title: 'Facturas',
+    static navigationOptions = ({navigation}) => ({
+        title: navigation.getParam('title'),
         headerBackTitle: null
-    };
+    });
 
     componentDidMount() {
         const { navigation, dispatch, invoices } = this.props;

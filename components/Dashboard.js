@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
 
     handleClinicSelection = (clinic) => {
         const { navigation } = this.props;
-        navigation.navigate('Facturas', { clinicId: clinic._id});
+        navigation.navigate('Facturas', { clinicId: clinic._id, title: clinic.name});
     };
 
     render() {
