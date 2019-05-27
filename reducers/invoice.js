@@ -51,7 +51,7 @@ export default function invoiceReducer(state = {}, action) {
             let copy = {...state};
             let updatedState = Object.keys(key => copy[key])
                 .filter(invoice => invoice._id !== id);
-
+            console.log(updatedState, 'HELLLLLLOOOOOOO UPDATE STATEEEEEEEE');
             return {
                 ...updatedState
             };
