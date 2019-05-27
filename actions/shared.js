@@ -1,7 +1,7 @@
 import {loginUser, logOutUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
-import {addInvoice, getInvoices, getAllInvoices} from "./invoice";
+import {addInvoice, getInvoices, getAllInvoices, deleteInvoices} from "./invoice";
 
 const url = 'http://localhost:3000/';
 
@@ -70,7 +70,6 @@ export function createClinic(body, token) {
             body: JSON.stringify(body)
         }).then(response => response.json())
             .then(data => {
-                console.log(data, 'This is the data returned');
                 dispatch(addClinic(data))
             });
     }
@@ -87,8 +86,10 @@ export function eraseClinic(id, token) {
             }
         }).then(response => response.json())
             .then(data => {
-                dispatch(deleteClinic(data._id))
-            });
+                console.log(data, 'Data from deleting a clinic');
+                dispatch(deleteClinic(data['clinic']._id));
+                dispatch(deleteInvoices(data['clinic']._id));
+            }).catch(error => console.log(error));
     }
 }
 
@@ -105,7 +106,6 @@ export function grabInvoices(clinicId, userId, token) {
             }
         }).then(response => response.json())
             .then(data => {
-                console.log(data, '//////////////This is data from server///////////');
                 dispatch(getInvoices(data))
             });
     }

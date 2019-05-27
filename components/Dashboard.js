@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps({clinics}) {
-
+function mapStateToProps({clinics, invoices}) {
+    console.log(invoices, 'INVOICES INVOICES INVOICES');
     return {
         clinics: Object.keys(clinics).map(key => clinics[key])
     }
