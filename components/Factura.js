@@ -5,6 +5,7 @@ import SubmitButton from '../utils/utility-components/SubmitButton';
 import {getUser} from "../utils/helpers";
 import {createInvoice} from "../actions/shared";
 import { connect } from "react-redux";
+import {aquaMarine} from "../utils/colors";
 
 class Factura extends React.Component {
 
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
        padding: 10
    },
     input: {
-        borderColor: 'fuchsia',
+        borderColor: aquaMarine,
         borderRadius: 25,
         borderWidth: 1,
         width: '100%',

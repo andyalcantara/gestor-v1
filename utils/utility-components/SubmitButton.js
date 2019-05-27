@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {aquaMarine} from "../colors";
 
 const SubmitButton = (props) => {
   return (
@@ -11,9 +12,9 @@ const SubmitButton = (props) => {
 
 const styles = StyleSheet.create({
    button: {
-       backgroundColor: 'fuchsia',
+       backgroundColor: aquaMarine,
        borderRadius: 25,
-       borderColor: 'fuchsia',
+       borderColor: aquaMarine,
        width: '100%',
        borderWidth: 1,
        height: 40,

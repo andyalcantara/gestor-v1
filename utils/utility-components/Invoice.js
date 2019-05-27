@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {aquaMarine} from "../colors";
 
 const Invoice = (props) => {
     return (
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
    container: {
        flexDirection: 'row',
        justifyContent: 'space-evenly',
-       borderColor: 'fuchsia',
+       borderColor: aquaMarine,
        borderRadius: 8,
        borderWidth: 1,
        height: 70,

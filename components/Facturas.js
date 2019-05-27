@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Invoice from '../utils/utility-components/Invoice';
 import {getUser} from "../utils/helpers";
 import {grabInvoices} from "../actions/shared";
+import {aquaMarine} from "../utils/colors";
 
 class Facturas extends React.Component {
 
@@ -109,10 +110,10 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     invoiceButton: {
-        backgroundColor: 'fuchsia',
+        backgroundColor: aquaMarine,
         borderRadius: 25,
         borderWidth: 1,
-        borderColor: 'fuchsia',
+        borderColor: aquaMarine,
         justifyContent: 'center',
         alignItems: 'center',
         height: 40,

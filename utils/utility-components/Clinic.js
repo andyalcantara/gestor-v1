@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {aquaMarine} from "../colors";
 
 const Clinic = (props) => {
     return (
@@ -10,7 +11,7 @@ const Clinic = (props) => {
                 <Text>{props.invoices} invoices</Text>
 
                 <TouchableOpacity onPress={props.onDelete}>
-                    <Text style={{color: 'fuchsia'}}>Delete</Text>
+                    <Text style={{color: aquaMarine}}>Delete</Text>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     button: {
        borderRadius: 8,
        borderWidth: 1,
-       borderColor: 'fuchsia',
+       borderColor: aquaMarine,
        height: 70,
        marginTop: 10,
     }

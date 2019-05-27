@@ -13,6 +13,7 @@ import {deleteUser, getUser} from "../utils/helpers";
 
 import { connect } from 'react-redux';
 import {loginUser} from "../actions/user";
+import {aquaMarine} from "../utils/colors";
 
 class Signup extends React.Component {
 
@@ -112,7 +113,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     input: {
-        borderColor: 'fuchsia',
+        borderColor: aquaMarine,
         borderRadius: 25,
         borderWidth: 1,
         width: '100%',
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     label: {
-        color: 'fuchsia',
+        color: aquaMarine,
         fontSize: 15,
         marginTop: 15,
     },
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     signin: {
-        color: 'fuchsia'
+        color: aquaMarine
     }
 });
 

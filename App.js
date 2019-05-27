@@ -13,6 +13,7 @@ import Factura from './components/Factura';
 import Calculator from './components/Calculator';
 import Clinics from './components/Clinics';
 import Facturas from './components/Facturas';
+import { aquaMarine } from "./utils/colors";
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -29,7 +30,7 @@ const StackNavigator = createStackNavigator({
 }, {
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: 'fuchsia',
+      backgroundColor: aquaMarine,
     },
     headerTintColor: 'white',
     headerTitleStyle: {
@@ -41,6 +42,14 @@ const StackNavigator = createStackNavigator({
 const TabNavigator = createBottomTabNavigator({
   Pacientes: { screen: StackNavigator },
   Total: { screen: Calculator }
+}, {
+  defaultNavigationOptions: ({ navigation }) => ({
+
+  }),
+  tabBarOptions: {
+    activeTintColor: aquaMarine,
+    inactiveTintColor: 'gray'
+  }
 });
 
 const AppContainer = createAppContainer(TabNavigator);

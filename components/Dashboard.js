@@ -9,6 +9,7 @@ import SignOutButton from '../utils/utility-components/SignOutButton';
 import {handleClinics, eraseClinic, grabAllInvoices} from "../actions/shared";
 import {deleteToken, getUser} from "../utils/helpers";
 import {logOutUser} from "../actions/user";
+import {aquaMarine} from "../utils/colors";
 
 class Dashboard extends React.Component {
 
@@ -101,20 +102,20 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     invoiceButton: {
-        backgroundColor: 'fuchsia',
+        backgroundColor: aquaMarine,
         borderRadius: 25,
         borderWidth: 1,
-        borderColor: 'fuchsia',
+        borderColor: aquaMarine,
         justifyContent: 'center',
         alignItems: 'center',
         height: 40,
         marginTop: 10,
     },
     clinicButton: {
-        backgroundColor: 'fuchsia',
+        backgroundColor: aquaMarine,
         borderRadius: 25,
         borderWidth: 1,
-        borderColor: 'fuchsia',
+        borderColor: aquaMarine,
         justifyContent: 'center',
         alignItems: 'center',
         height: 40,
@@ -128,7 +129,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({clinics, invoices}) {
-    console.log(invoices, 'INVOICES INVOICES INVOICES');
     return {
         clinics: Object.keys(clinics).map(key => clinics[key])
     }

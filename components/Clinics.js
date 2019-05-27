@@ -5,6 +5,7 @@ import SubmitButton from '../utils/utility-components/SubmitButton';
 import { createClinic } from "../actions/shared";
 import { getUser } from "../utils/helpers";
 import { connect } from 'react-redux';
+import {aquaMarine} from "../utils/colors";
 
 class Clinics extends React.Component {
 
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     input: {
-        borderColor: 'fuchsia',
+        borderColor: aquaMarine,
         borderRadius: 25,
         borderWidth: 1,
         width: '100%',
