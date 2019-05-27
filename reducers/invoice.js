@@ -1,9 +1,9 @@
 import {
     ADD_INVOICE,
     GET_ALL_INVOICES,
-    GET_INVOICES,
-    DELETE_INVOICES
+    GET_INVOICES
 } from "../actions/invoice";
+import { DELETE_CLINIC } from "../actions/clinic";
 
 export default function invoiceReducer(state = {}, action) {
     switch (action.type) {
@@ -45,11 +45,17 @@ export default function invoiceReducer(state = {}, action) {
                 ...objAllInvoices
             };
 
-        case DELETE_INVOICES:
-            const { invoicesToDelete, clinicId } = action;
+        case DELETE_CLINIC:
+            const { id } = action;
+
+            let copy = {...state};
+            let updatedState = Object.keys(key => copy[key])
+                .filter(invoice => invoice._id !== id);
+
             return {
-                ...state
+                ...updatedState
             };
+
 
         default:
             return state;

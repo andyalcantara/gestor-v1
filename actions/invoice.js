@@ -1,7 +1,6 @@
 export const ADD_INVOICE = 'ADD_INVOICE';
 export const GET_INVOICES = 'GET_INVOICES';
 export const GET_ALL_INVOICES = 'GET_ALL_INVOICES';
-export const DELETE_INVOICES = 'DELETE_INVOICES';
 
 export function addInvoice(invoice) {
     return {
@@ -24,10 +23,4 @@ export function getInvoices(invoices) {
     }
 }
 
-export function deleteInvoices(invoicesToDelete, clinicId) {
-    return {
-        type: DELETE_INVOICES,
-        invoicesToDelete,
-        clinicId
-    }
-}
+
