@@ -10,11 +10,13 @@ import {
 } from "react-native";
 
 import { connect } from 'react-redux';
+import {aquaMarine} from "../utils/colors";
 
 class Calculator extends React.Component {
 
     state = {
-      addingCost: false
+        addingCost: false,
+        labCost: 0
     };
 
     handleAddingCost = () => {
@@ -24,7 +26,7 @@ class Calculator extends React.Component {
     };
 
     render() {
-        const { addingCost } = this.state;
+        const { addingCost, labCost } = this.state;
         const { sectionListData, total, totalIncome } = this.props;
         let date = new Date();
         let acDate = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(date);
@@ -52,15 +54,15 @@ class Calculator extends React.Component {
                     keyExtractor={(item) => item._id}
                 />
 
-                <Text>Total facturado: {total}</Text>
+                <Text>Total facturado: {total - labCost}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
 
-                <View>
-                    <TouchableOpacity onPress={this.handleAddingCost}>
-                        <Text>Costo de Laboratorio</Text>
+                <View style={styles.inputContainer}>
+                    <TouchableOpacity onPress={this.handleAddingCost} style={styles.addLabCostBtn}>
+                        <Text style={styles.btnTxt}>Costo de Laboratorio</Text>
                     </TouchableOpacity>
 
-                    {addingCost === true ? <TextInput /> : <Text></Text>}
+                    {addingCost === true ? <TextInput style={styles.input} /> : <Text></Text>}
                 </View>
 
             </SafeAreaView>
@@ -126,12 +128,31 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'lightgray',
     },
-    headerSection: {
-
-    },
     containerPrice: {
         width: '100%',
         padding: 15,
+    },
+    input: {
+        borderRadius: 25,
+        borderWidth: 1,
+        borderColor: aquaMarine,
+        height: 40,
+        paddingLeft: 15
+    },
+    inputContainer: {
+        padding: 20,
+    },
+    addLabCostBtn: {
+        alignSelf: 'center',
+        height: 40,
+        marginBottom: 20,
+        backgroundColor: aquaMarine,
+        borderRadius: 25,
+        justifyContent: 'center',
+        padding: 10
+    },
+    btnTxt: {
+        color: 'white'
     }
 });
 
