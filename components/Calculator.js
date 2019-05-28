@@ -1,12 +1,30 @@
 import React from 'react';
-import { View, Text, SafeAreaView, SectionList, StyleSheet } from "react-native";
+import {
+    View,
+    Text,
+    SafeAreaView,
+    SectionList,
+    StyleSheet,
+    TouchableOpacity,
+    TextInput
+} from "react-native";
 
 import { connect } from 'react-redux';
 
 class Calculator extends React.Component {
 
-    render() {
+    state = {
+      addingCost: false
+    };
 
+    handleAddingCost = () => {
+      this.setState(prevState => ({
+          addingCost: !prevState.addingCost
+      }));
+    };
+
+    render() {
+        const { addingCost } = this.state;
         const { sectionListData, total, totalIncome } = this.props;
         let date = new Date();
         let acDate = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(date);
@@ -37,6 +55,14 @@ class Calculator extends React.Component {
                 <Text>Total facturado: {total}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
 
+                <View>
+                    <TouchableOpacity onPress={this.handleAddingCost}>
+                        <Text>Costo de Laboratorio</Text>
+                    </TouchableOpacity>
+
+                    {addingCost === true ? <TextInput /> : <Text></Text>}
+                </View>
+
             </SafeAreaView>
         );
     }
@@ -53,8 +79,6 @@ function mapStateToProps({ invoices, clinics }) {
         let invoiceDate = new Date(invoice.date).getMonth();
         return dateMonth === invoiceDate;
     });
-
-    console.log(invoicesMonthArray.length, 'These are my month arrray invoices');
 
     let acClinics = Object.keys(clinics).map(key => clinics[key])
         .map(clinic => {
