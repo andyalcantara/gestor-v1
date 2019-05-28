@@ -14,6 +14,7 @@ import {deleteUser, getUser} from "../utils/helpers";
 import { connect } from 'react-redux';
 import {loginUser} from "../actions/user";
 import {aquaMarine} from "../utils/colors";
+import {handleSignup} from "../actions/shared";
 
 class Signup extends React.Component {
 
@@ -55,7 +56,7 @@ class Signup extends React.Component {
                                 navigation.navigate('Signup');
                             });
                         }
-                    });
+                    }).catch(error => console.log(error));
             }
         }).catch(error => console.log(error));
     }
@@ -65,19 +66,24 @@ class Signup extends React.Component {
         this.setState({
             email: actualText
         });
-        console.log(this.state);
     };
 
     handlePassword = (text) => {
         this.setState({
             password: text
         });
-        console.log(this.state);
     };
 
     handleSubmit = () => {
+        const { dispatch, navigation } = this.props;
         let { email, password } = this.state;
 
+        dispatch(handleSignup({email: email, password: password}));
+        this.setState({
+           email: '',
+           password: ''
+        });
+        navigation.navigate('Signin');
     };
 
     render() {

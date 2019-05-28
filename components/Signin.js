@@ -45,6 +45,12 @@ class Signin extends React.Component {
             .then(data => {
                 saveUser(data.id, data.token);
                 dispatch(loginUser(data.id, data.token));
+
+                this.setState({
+                    email: '',
+                    password: ''
+                });
+
                 navigation.navigate('Dashboard', {token: data.token});
             });
     };

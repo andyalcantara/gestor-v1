@@ -12,10 +12,9 @@ export function loginUser(userData, token) {
     }
 }
 
-export function signUpUser(userData) {
+export function signUpUser() {
     return {
-        type: SIGN_UP_USER,
-        user: userData
+        type: SIGN_UP_USER
     }
 }
 

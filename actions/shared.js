@@ -1,4 +1,4 @@
-import {loginUser, logOutUser} from './user';
+import {loginUser, logOutUser, signUpUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
 import {addInvoice, getInvoices, getAllInvoices, deleteInvoices} from "./invoice";
@@ -11,14 +11,15 @@ const postHeader = {
 
 export function handleSignup(body) {
     return (dispatch) => {
-        return fetch(url + '/signup', {
+        return fetch(url + 'user/' + 'signup', {
             method: 'POST',
             body: JSON.stringify(body),
             headers: postHeader
         }).then(response => response.json())
             .then(data => {
-                console.log('this is the data', data);
-            });
+                dispatch(signUpUser());
+            })
+            .catch(error => console.log(error));
     }
 }
 
