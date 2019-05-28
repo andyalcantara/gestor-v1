@@ -50,11 +50,12 @@ class Dashboard extends React.Component {
         });
 
         let token = navigation.getParam('token');
+        let userId = navigation.getParam('userId');
 
         if (!token) {
             navigation.navigate('Signup');
         } else {
-            dispatch(handleClinics(token));
+            dispatch(handleClinics(token, userId));
             dispatch(grabAllInvoices(token));
         }
     }

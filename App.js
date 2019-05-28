@@ -17,7 +17,7 @@ import { aquaMarine } from "./utils/colors";
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from './reducers';
+import { rootReducer } from './reducers';
 import middleware from './middleware';
 
 const StackNavigator = createStackNavigator({
@@ -54,7 +54,7 @@ const TabNavigator = createBottomTabNavigator({
 
 const AppContainer = createAppContainer(TabNavigator);
 
-let store = createStore(reducer, middleware);
+let store = createStore(rootReducer, middleware);
 
 export default class App extends React.Component {
 

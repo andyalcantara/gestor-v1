@@ -2,10 +2,11 @@ export const GET_CLINICS = 'GET_CLINICS';
 export const ADD_CLINIC = 'ADD_CLINIC';
 export const DELETE_CLINIC = 'DELETE_CLINIC';
 
-export function getClinics(clinics) {
+export function getClinics(clinics, userId) {
     return {
         type: GET_CLINICS,
-        clinics
+        clinics,
+        userId
     }
 }
 

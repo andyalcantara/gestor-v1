@@ -25,7 +25,7 @@ export function handleSignup(body) {
 
 export function handleLogin(body) {
     return (dispatch) => {
-        return fetch(url + '/signin', {
+        return fetch(url + 'user/signin', {
             method: 'POST',
             body: JSON.stringify(body),
             headers: postHeader
@@ -39,7 +39,7 @@ export function handleLogin(body) {
 
 // Clinic related logic
 
-export function handleClinics(token) {
+export function handleClinics(token, userId) {
 
     return (dispatch) => {
         return fetch(url + 'clinics', {
@@ -51,10 +51,10 @@ export function handleClinics(token) {
             }
         }).then(response => response.json())
             .then(data => {
-                if (typeof data.message === 'Token is not valid') {
+                if (data.message === 'Token is not valid') {
                     dispatch(logOutUser());
                 }
-                dispatch(getClinics(data));
+                dispatch(getClinics(data, userId));
             });
     }
 }

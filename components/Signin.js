@@ -51,7 +51,7 @@ class Signin extends React.Component {
                     password: ''
                 });
 
-                navigation.navigate('Dashboard', {token: data.token});
+                navigation.navigate('Dashboard', {token: data.token, userId: data.id});
             });
     };
 

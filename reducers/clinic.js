@@ -4,9 +4,12 @@ export default function clinicsReducer(state = {}, action) {
 
     switch (action.type) {
         case GET_CLINICS:
-            const { clinics } = action;
+            const { clinics, userId } = action;
 
-            let arrayClinics = Object.keys(clinics).map(key => clinics[key]);
+            let arrayClinics = Object.keys(clinics).map(key => clinics[key])
+                .filter(clinic => {
+                    return clinic.user === userId;
+                });
             let theClinics = {};
 
             for (let i = 0; i < arrayClinics.length; i++) {
