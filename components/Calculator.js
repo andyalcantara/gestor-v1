@@ -38,7 +38,8 @@ class Calculator extends React.Component {
                 <SectionList
                     renderItem={({item, index, section}) => {
                         let itemDate = new Date(item.date);
-                        let itemMonth = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(itemDate);
+                        let itemMonth = new Intl.DateTimeFormat('es-ES', {month: 'long'})
+                            .format(itemDate);
                         return (
                             <View>
                                 <Text>{acDate === itemMonth ? item.price : ''}</Text>
