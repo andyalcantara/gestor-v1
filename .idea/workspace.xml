@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d12bf7-03c0-4c26-bb66-dea4e3f335a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/actions/total.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reducers/total.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calculator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/Calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="995">
-              <caret line="122" column="32" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="32" />
+            <state relative-caret-position="483">
+              <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -106,7 +102,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reducers/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
@@ -164,10 +160,10 @@
         <option value="$PROJECT_DIR$/actions/shared.js" />
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/reducers/clinic.js" />
-        <option value="$PROJECT_DIR$/components/Calculator.js" />
         <option value="$PROJECT_DIR$/actions/total.js" />
         <option value="$PROJECT_DIR$/reducers/total.js" />
         <option value="$PROJECT_DIR$/reducers/index.js" />
+        <option value="$PROJECT_DIR$/components/Calculator.js" />
       </list>
     </option>
   </component>
@@ -261,12 +257,12 @@
       <workItem from="1559010289645" duration="916000" />
       <workItem from="1559067120778" duration="8462000" />
       <workItem from="1559185682643" duration="158000" />
-      <workItem from="1559230819735" duration="3120000" />
+      <workItem from="1559230819735" duration="4004000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124000000" />
+    <option name="totallyTimeSpent" value="124884000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,16 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Calculator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="995">
-          <caret line="122" column="32" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actions/total.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -541,6 +527,16 @@
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Calculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="164" column="17" selection-start-line="164" selection-start-column="17" selection-end-line="164" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -64,6 +64,12 @@ class Calculator extends React.Component {
                     </TouchableOpacity>
 
                     {addingCost === true ? <TextInput style={styles.input} /> : <Text></Text>}
+
+                    {addingCost === true ? (
+                        <TouchableOpacity onPress={this.handleAddingCost} style={styles.aplicarBtn}>
+                            <Text style={styles.btnTxt}>Aplicar</Text>
+                        </TouchableOpacity>
+                    ) : <Text></Text>}
                 </View>
 
             </SafeAreaView>
@@ -147,6 +153,16 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: 40,
         marginBottom: 20,
+        backgroundColor: aquaMarine,
+        borderRadius: 25,
+        justifyContent: 'center',
+        padding: 10
+    },
+
+    aplicarBtn: {
+        alignSelf: 'center',
+        height: 40,
+        marginTop: 20,
         backgroundColor: aquaMarine,
         borderRadius: 25,
         justifyContent: 'center',
