@@ -10,6 +10,7 @@ import {handleClinics, eraseClinic, grabAllInvoices} from "../actions/shared";
 import {deleteToken, getUser} from "../utils/helpers";
 import {logOutUser} from "../actions/user";
 import {aquaMarine} from "../utils/colors";
+import {setTotal} from "../actions/total";
 
 class Dashboard extends React.Component {
 
@@ -44,7 +45,6 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         const { dispatch, navigation } = this.props;
-
         navigation.setParams({
             dispatch: dispatch
         });
@@ -67,8 +67,8 @@ class Dashboard extends React.Component {
 
     render() {
 
-        const { clinics, navigation } = this.props;
-
+        const { clinics, navigation, total } = this.props;
+        console.log(total, 'from render method');
         return (
             <View style={styles.container}>
                 <TouchableOpacity
@@ -130,8 +130,26 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({clinics, invoices}) {
+
+    let dateMonth = new Date().getMonth();
+
+    // Manipulating data from store
+    let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
+    let invoicesMonthArray = invoicesArray.filter(invoice => {
+        let invoiceDate = new Date(invoice.date).getMonth();
+        return dateMonth === invoiceDate;
+    });
+
+    const reducer = (accumulator, value) => accumulator + parseFloat(value.price);
+    let total = invoicesMonthArray.reduce(reducer, 0);
+    let acTotal;
+    if (total !== 0) {
+        acTotal = total;
+    }
+
     return {
-        clinics: Object.keys(clinics).map(key => clinics[key])
+        clinics: Object.keys(clinics).map(key => clinics[key]),
+        total: acTotal
     }
 }
 

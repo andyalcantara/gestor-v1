@@ -11,6 +11,7 @@ import {
 
 import { connect } from 'react-redux';
 import {aquaMarine} from "../utils/colors";
+import {setTotal} from "../actions/total";
 
 class Calculator extends React.Component {
 
@@ -19,10 +20,26 @@ class Calculator extends React.Component {
         labCost: 0
     };
 
+    componentDidMount() {
+        const { dispatch, total } = this.props;
+        dispatch(setTotal(total));
+    }
+
     handleAddingCost = () => {
       this.setState(prevState => ({
           addingCost: !prevState.addingCost
       }));
+    };
+
+    applyCost = () => {
+        // Call dispatch to set total
+    };
+
+    handleCost = (text) => {
+        let cost = parseFloat(text);
+        this.setState({
+            labCost: cost
+        });
     };
 
     render() {
@@ -63,10 +80,10 @@ class Calculator extends React.Component {
                         <Text style={styles.btnTxt}>Costo de Laboratorio</Text>
                     </TouchableOpacity>
 
-                    {addingCost === true ? <TextInput style={styles.input} /> : <Text></Text>}
+                    {addingCost === true ? <TextInput style={styles.input} onChangeText={this.handleCost} /> : <Text></Text>}
 
                     {addingCost === true ? (
-                        <TouchableOpacity onPress={this.handleAddingCost} style={styles.aplicarBtn}>
+                        <TouchableOpacity onPress={this.applyCost} style={styles.aplicarBtn}>
                             <Text style={styles.btnTxt}>Aplicar</Text>
                         </TouchableOpacity>
                     ) : <Text></Text>}
@@ -91,7 +108,7 @@ function mapStateToProps({ invoices, clinics }) {
 
     let acClinics = Object.keys(clinics).map(key => clinics[key])
         .map(clinic => {
-            let acInvoices = invoicesArray.filter(invoice => {
+            let acInvoices = invoicesMonthArray.filter(invoice => {
                return invoice.clinic === clinic._id;
             });
             return {
