@@ -99,12 +99,13 @@ function mapStateToProps({ invoices, clinics }) {
     let incomes = [];
     let dateMonth = new Date().getMonth();
 
-    // Manipulating data from store
+    // Getting all invoices from the current month
     let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
     let invoicesMonthArray = invoicesArray.filter(invoice => {
         let invoiceDate = new Date(invoice.date).getMonth();
         return dateMonth === invoiceDate;
     });
+
 
     let acClinics = Object.keys(clinics).map(key => clinics[key])
         .map(clinic => {
@@ -118,12 +119,12 @@ function mapStateToProps({ invoices, clinics }) {
         });
 
     const reducer = (accumulator, value) => accumulator + parseFloat(value.price);
-    let total = invoicesArray.reduce(reducer, 0);
+    let total = invoicesMonthArray.reduce(reducer, 0);
 
     let theClinics = Object.keys(clinics).map(key => clinics[key]);
     for (let i = 0; i < theClinics.length; i++) {
         let clinic = theClinics[i];
-        let invoices = invoicesArray.filter(invoice => invoice.clinic === clinic._id);
+        let invoices = invoicesMonthArray.filter(invoice => invoice.clinic === clinic._id);
 
         let subTotal = invoices.reduce(reducer, 0);
         let income = subTotal * clinic.pay;

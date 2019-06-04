@@ -50,7 +50,7 @@ class Facturas extends React.Component {
         let acInvoices = invoices.filter(invoice => {
             return invoice.clinic === id;
         });
-        const reducer = (accumulator, value) => accumulator + parseFloat(value.price);
+        const reducer = (accumulator, value) => (accumulator * 100 + parseFloat(value.price) * 100) / 100;
 
         let total = acInvoices.reduce(reducer, 0);
         let income = total * clinics[id].pay;
