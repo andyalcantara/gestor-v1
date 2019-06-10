@@ -144,3 +144,20 @@ export function createInvoice(clinicId, token, body) {
             });
     }
 }
+
+//////////// TREATMENTS ACTION CREATORS //////////
+export function getTreatments(clinicId, token) {
+    return (dispatch) => {
+        return fetch(url + clinicId + '/treatments', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(getTreatments(data));
+            });
+    }
+}

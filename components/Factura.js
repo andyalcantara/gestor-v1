@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import {
+    Text,
+    TextInput,
+    StyleSheet,
+    KeyboardAvoidingView,
+    Picker
+} from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 import {getUser} from "../utils/helpers";
