@@ -56,7 +56,7 @@ class Facturas extends React.Component {
         let income = total * clinics[id].pay;
         this.setState({
             total: total,
-            income: income,
+            income: income.toFixed(2),
             show: true
         });
     };
