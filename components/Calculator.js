@@ -137,7 +137,7 @@ function mapStateToProps({ invoices, clinics }) {
     }
 
     const incomeReducer = (accumulator, value) => accumulator + value.income;
-    let totalIncome = incomes.reduce(incomeReducer, 0);
+    let totalIncome = incomes.reduce(incomeReducer, 0).toFixed(2);
 
     return {
         invoices: Object.keys(invoices).map(key => invoices[key]),
