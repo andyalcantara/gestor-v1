@@ -2,6 +2,7 @@ import {loginUser, logOutUser, signUpUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
 import {addInvoice, getInvoices, getAllInvoices, deleteInvoices} from "./invoice";
+import {getTreatments} from "./treatment";
 
 const url = 'http://localhost:3000/';
 
@@ -148,7 +149,7 @@ export function createInvoice(clinicId, token, body) {
 //////////// TREATMENTS ACTION CREATORS //////////
 export function grabTreatments(clinicId, token) {
     return (dispatch) => {
-        return fetch(url + clinicId + '/treatments', {
+        return fetch(url + 'treatment/' + clinicId + '/treatments', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
