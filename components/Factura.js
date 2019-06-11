@@ -9,7 +9,7 @@ import {
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 import {getUser} from "../utils/helpers";
-import {createInvoice} from "../actions/shared";
+import {createInvoice, grabTreatments} from "../actions/shared";
 import { connect } from "react-redux";
 import {aquaMarine} from "../utils/colors";
 
@@ -25,6 +25,17 @@ class Factura extends React.Component {
       tratamiento: '',
       precio: 0,
     };
+
+    componentDidMount() {
+        const { dispatch, navigation } = this.props;
+        const clinicId = navigation.getParam('clinicId');
+        getUser().then(result => {
+            let user = JSON.parse(result);
+            if (user) {
+                dispatch(grabTreatments(clinicId, user.token));
+            }
+        });
+    }
 
     handleHC = (text) => {
         this.setState({

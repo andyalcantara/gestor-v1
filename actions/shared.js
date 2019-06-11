@@ -146,7 +146,7 @@ export function createInvoice(clinicId, token, body) {
 }
 
 //////////// TREATMENTS ACTION CREATORS //////////
-export function getTreatments(clinicId, token) {
+export function grabTreatments(clinicId, token) {
     return (dispatch) => {
         return fetch(url + clinicId + '/treatments', {
             method: 'GET',

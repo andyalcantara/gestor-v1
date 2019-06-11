@@ -72,7 +72,7 @@ class Calculator extends React.Component {
                     keyExtractor={(item) => item._id}
                 />
 
-                <Text>Total facturado: {total - labCost}</Text>
+                <Text>Total facturado: {total}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
 
                 <View style={styles.inputContainer}>
