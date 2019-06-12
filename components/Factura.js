@@ -80,7 +80,7 @@ class Factura extends React.Component {
         const { treatments } = this.props;
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
-                <ScrollView>
+                <ScrollView style={{height: '100%'}}>
                     <Text style={styles.label}>Historia Clinica</Text>
                     <TextInput style={styles.input} onChangeText={this.handleHC} />
 
@@ -93,17 +93,22 @@ class Factura extends React.Component {
                         <Picker
                             selectedValue={this.state.tratamiento}
                             style={{height: 50, width: 200}}
+                            itemStyle={{fontSize: 13}}
                             onValueChange={(itemValue, itemIndex) => this.setState({tratamiento: itemValue})}
                         >
                             {
                                 treatments.map(treatment => (
-                                    <Picker.Item key={treatment._id} label={treatment.name} value={treatment.value} />
+                                    <Picker.Item
+                                        key={treatment._id}
+                                        label={treatment.name + '-' + treatment.value}
+                                        value={treatment.value}
+                                    />
                                 ))
                             }
                         </Picker>
                     </View>
 
-                    <View style={{marginTop: 220}}>
+                    <View style={{marginTop: 150}}>
                         <Text style={styles.label}>Precio por tratamiento</Text>
                         <TextInput style={styles.input} onChangeText={this.handlePrice} />
 
