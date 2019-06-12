@@ -4,7 +4,9 @@ import {
     TextInput,
     StyleSheet,
     KeyboardAvoidingView,
-    Picker
+    Picker,
+    View,
+    ScrollView
 } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
@@ -75,21 +77,39 @@ class Factura extends React.Component {
     };
 
     render() {
+        const { treatments } = this.props;
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
-                <Text style={styles.label}>Historia Clinica</Text>
-                <TextInput style={styles.input} onChangeText={this.handleHC} />
+                <ScrollView>
+                    <Text style={styles.label}>Historia Clinica</Text>
+                    <TextInput style={styles.input} onChangeText={this.handleHC} />
 
-                <Text style={styles.label}>Name</Text>
-                <TextInput style={styles.input} onChangeText={this.handleName} />
+                    <Text style={styles.label}>Name</Text>
+                    <TextInput style={styles.input} onChangeText={this.handleName} />
 
-                <Text style={styles.label}>Tratamiento</Text>
-                <TextInput style={styles.input} onChangeText={this.handleTreatment} />
+                    <Text style={styles.label}>Tratamiento</Text>
 
-                <Text style={styles.label}>Precio por tratamiento</Text>
-                <TextInput style={styles.input} onChangeText={this.handlePrice} />
+                    <View style={{flex: 2, alignItems: 'center'}}>
+                        <Picker
+                            selectedValue={this.state.tratamiento}
+                            style={{height: 50, width: 200}}
+                            onValueChange={(itemValue, itemIndex) => this.setState({tratamiento: itemValue})}
+                        >
+                            {
+                                treatments.map(treatment => (
+                                    <Picker.Item key={treatment._id} label={treatment.name} value={treatment.value} />
+                                ))
+                            }
+                        </Picker>
+                    </View>
 
-                <SubmitButton onPress={this.handleSubmit} />
+                    <View style={{marginTop: 220}}>
+                        <Text style={styles.label}>Precio por tratamiento</Text>
+                        <TextInput style={styles.input} onChangeText={this.handlePrice} />
+
+                        <SubmitButton onPress={this.handleSubmit} />
+                    </View>
+                </ScrollView>
             </KeyboardAvoidingView>
         );
     }
@@ -115,4 +135,10 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect()(Factura);
+function mapStateToProps({ treatments }) {
+    return {
+        treatments: Object.keys(treatments).map(key => treatments[key])
+    }
+}
+
+export default connect(mapStateToProps)(Factura);
