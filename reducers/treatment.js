@@ -4,9 +4,15 @@ export default function treatmentReducer(state = {}, action) {
     switch (action.type) {
         case GET_TREATMENTS:
             const { treatments } = action;
+
+            let acTreatments = {};
+            treatments.map(treatment => {
+               acTreatments[treatment._id] = treatment;
+            });
+
             return {
                 ...state,
-                ...treatments
+                ...acTreatments
             };
 
         default:
