@@ -7,7 +7,9 @@ import {
     Picker,
     View,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView,
+    Modal
 } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
@@ -23,10 +25,13 @@ class Factura extends React.Component {
     };
 
     state = {
-      hc: 0,
-      name: '',
-      tratamiento: '',
-      precio: 0,
+        hc: 0,
+        name: '',
+        tratamiento: '',
+        precio: 0,
+        modalOpen: false,
+        treatName: '',
+        treatPrice: 0
     };
 
     componentDidMount() {
@@ -39,6 +44,18 @@ class Factura extends React.Component {
             }
         });
     }
+
+    handleTreatName = (text) => {
+        this.setState({
+            treatName: text
+        });
+    };
+
+    handleTreatPrice = (text) => {
+        this.setState({
+            treatPrice: parseFloat(text.trim())
+        });
+    };
 
     handleHC = (text) => {
         this.setState({
@@ -60,9 +77,18 @@ class Factura extends React.Component {
         console.log(clinicId, 'CLinic id from Factura');
         getUser().then(result => {
             let user = JSON.parse(result);
-            dispatch(createInvoice(clinicId, user.token, {clinicHistory: hc, name: name, treatment: tratamiento, price: precio}));
+            dispatch(createInvoice(clinicId, user.token, {
+                clinicHistory: hc,
+                name: name,
+                treatment: tratamiento,
+                price: precio
+            }));
             navigation.goBack();
         });
+    };
+
+    handleSubmitTreatment = () => {
+
     };
 
     render() {
@@ -100,7 +126,10 @@ class Factura extends React.Component {
                             }
                         </Picker>
 
-                        <TouchableOpacity style={styles.addTreatmentBtn} onPress={() => alert('I was pressed')}>
+                        <TouchableOpacity
+                            style={styles.addTreatmentBtn}
+                            onPress={() => this.setState({modalOpen: true})}
+                        >
                             <Text style={{color: 'white'}}>Add Treatment</Text>
                         </TouchableOpacity>
                     </View>
@@ -109,6 +138,27 @@ class Factura extends React.Component {
                         <SubmitButton onPress={this.handleSubmit} />
                     </View>
                 </ScrollView>
+
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalOpen}
+                >
+                    <SafeAreaView>
+                        <TouchableOpacity onPress={() => this.setState({modalOpen: false})}>
+                            <Text>X</Text>
+                        </TouchableOpacity>
+
+                        <Text>Nombre de Tratamiento:</Text>
+                        <TextInput onChangeText={this.handleTreatName} />
+
+                        <Text>Precio</Text>
+                        <TextInput onChangeText={this.handleTreatPrice} />
+
+                        <SubmitButton onPress={this.handleSubmitTreatment} />
+                    </SafeAreaView>
+                </Modal>
+
             </KeyboardAvoidingView>
         );
     }
