@@ -2,7 +2,7 @@ import {loginUser, logOutUser, signUpUser} from './user';
 import { getClinics, addClinic, deleteClinic } from "./clinic";
 import {saveUser} from "../utils/helpers";
 import {addInvoice, getInvoices, getAllInvoices, deleteInvoices} from "./invoice";
-import {getTreatments} from "./treatment";
+import {addTreatment, getTreatments} from "./treatment";
 
 const url = 'http://localhost:3000/';
 
@@ -159,6 +159,23 @@ export function grabTreatments(clinicId, token) {
         }).then(response => response.json())
             .then(data => {
                 dispatch(getTreatments(data));
+            });
+    }
+}
+
+export function createTreatment(clinicId, token, body) {
+    return (dispatch) => {
+        return fetch(url + 'treatment/' + clinicId, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(body)
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(addTreatment(data));
             });
     }
 }
