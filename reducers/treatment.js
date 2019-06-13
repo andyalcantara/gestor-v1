@@ -1,4 +1,4 @@
-import {GET_TREATMENTS} from "../actions/treatment";
+import {GET_TREATMENTS, ADD_TREATMENT} from "../actions/treatment";
 
 export default function treatmentReducer(state = {}, action) {
     switch (action.type) {
@@ -13,6 +13,14 @@ export default function treatmentReducer(state = {}, action) {
             return {
                 ...state,
                 ...acTreatments
+            };
+
+        case ADD_TREATMENT:
+            const { treatment } = action;
+
+            return {
+              ...state,
+              [treatment._id]: treatment
             };
 
         default:
