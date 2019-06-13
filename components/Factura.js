@@ -6,7 +6,8 @@ import {
     KeyboardAvoidingView,
     Picker,
     View,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
@@ -51,18 +52,6 @@ class Factura extends React.Component {
         });
     };
 
-    handleTreatment = (text) => {
-        this.setState({
-            tratamiento: text
-        });
-    };
-
-    handlePrice = (text) => {
-        this.setState({
-            precio: text
-        });
-    };
-
     handleSubmit = () => {
         const { hc, name, tratamiento, precio } = this.state;
         const { dispatch, navigation } = this.props;
@@ -91,10 +80,14 @@ class Factura extends React.Component {
 
                     <View style={{flex: 2, alignItems: 'center'}}>
                         <Picker
-                            selectedValue={this.state.tratamiento}
+                            selectedValue={this.state.precio}
                             style={{height: 50, width: 200}}
                             itemStyle={{fontSize: 13}}
-                            onValueChange={(itemValue, itemIndex) => this.setState({tratamiento: itemValue})}
+                            onValueChange={(itemValue, itemIndex) => {
+                                this.setState({
+                                    tratamiento: treatments[itemIndex].name,
+                                    precio: itemValue})
+                            }}
                         >
                             {
                                 treatments.map(treatment => (
@@ -106,12 +99,13 @@ class Factura extends React.Component {
                                 ))
                             }
                         </Picker>
+
+                        <TouchableOpacity style={styles.addTreatmentBtn} onPress={() => alert('I was pressed')}>
+                            <Text style={{color: 'white'}}>Add Treatment</Text>
+                        </TouchableOpacity>
                     </View>
 
-                    <View style={{marginTop: 150}}>
-                        <Text style={styles.label}>Precio por tratamiento</Text>
-                        <TextInput style={styles.input} onChangeText={this.handlePrice} />
-
+                    <View>
                         <SubmitButton onPress={this.handleSubmit} />
                     </View>
                 </ScrollView>
@@ -137,6 +131,16 @@ const styles = StyleSheet.create({
     },
     label: {
        marginTop: 10
+    },
+    addTreatmentBtn: {
+        marginTop: 260,
+        backgroundColor: aquaMarine,
+        borderRadius: 25,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingLeft: 10,
+        paddingRight: 10
     }
 });
 

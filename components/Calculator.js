@@ -33,6 +33,7 @@ class Calculator extends React.Component {
 
     applyCost = () => {
         // Call dispatch to set total
+
     };
 
     handleCost = (text) => {
