@@ -14,7 +14,7 @@ import {
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 import {getUser} from "../utils/helpers";
-import {createInvoice, grabTreatments} from "../actions/shared";
+import {createInvoice, createTreatment, grabTreatments} from "../actions/shared";
 import { connect } from "react-redux";
 import {aquaMarine} from "../utils/colors";
 
@@ -88,7 +88,18 @@ class Factura extends React.Component {
     };
 
     handleSubmitTreatment = () => {
+        const { treatName, treatPrice } = this.state;
+        const { navigation, dispatch } = this.props;
 
+        let clinicId = navigation.getParam('clinicId');
+        getUser().then(result => {
+            let user = JSON.parse(result);
+            let body = {
+                name: treatName,
+                value: treatPrice
+            };
+            dispatch(createTreatment(clinicId, user.token, body));
+        });
     };
 
     render() {
