@@ -5,7 +5,7 @@ import {aquaMarine} from "../colors";
 const SubmitButton = (props) => {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.button}>
-        <Text style={{color: 'white'}}>Submit</Text>
+        <Text>Submit</Text>
     </TouchableOpacity>
   );
 };

@@ -5,7 +5,8 @@ import {
     TextInput,
     StyleSheet,
     TouchableOpacity,
-    KeyboardAvoidingView
+    KeyboardAvoidingView,
+    Image
 } from "react-native";
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
@@ -25,7 +26,10 @@ class Signup extends React.Component {
 
     static navigationOptions = {
         title: 'Sign Up',
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerBackground: (
+            <Image source={{uri: '../assets/bar.jpg'}} />
+        )
     };
 
     componentDidMount() {

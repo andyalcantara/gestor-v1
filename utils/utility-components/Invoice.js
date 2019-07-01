@@ -11,14 +11,8 @@ const Invoice = (props) => {
             </View>
 
             <View style={styles.ttoPrecio}>
-                {props.tratamientos.map((tratamiento) => {
-                    return (
-                        <View>
-                            <Text>TTO: {tratamiento.tto}</Text>
-                            <Text>Precio: {tratamiento.price}</Text>
-                        </View>
-                    );
-                })}
+                <Text>TTO: {props.tto}</Text>
+                <Text>Precio: {props.price}</Text>
             </View>
         </TouchableOpacity>
     );

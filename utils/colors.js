@@ -1,1 +1,1 @@
-export const aquaMarine = '#00b377';
+export const aquaMarine = '#D6FCD6';

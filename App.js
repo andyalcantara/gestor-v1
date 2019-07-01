@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import {
   createStackNavigator,
   createAppContainer,
@@ -14,6 +14,7 @@ import Calculator from './components/Calculator';
 import Clinics from './components/Clinics';
 import Facturas from './components/Facturas';
 import { aquaMarine } from "./utils/colors";
+import image from './assets/bar.jpg';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -29,8 +30,10 @@ const StackNavigator = createStackNavigator({
   Clinics: { screen: Clinics},
 }, {
   defaultNavigationOptions: {
+    headerBackground: (
+        <Image source={require('./assets/bar.jpg')} style={{width: 375, height: 90}} />
+    ),
     headerStyle: {
-      backgroundColor: aquaMarine,
     },
     headerTintColor: 'white',
     headerTitleStyle: {
