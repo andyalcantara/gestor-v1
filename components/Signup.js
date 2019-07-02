@@ -102,6 +102,7 @@ class Signup extends React.Component {
                     style={styles.input}
                     onChangeText={this.handlePassword}
                     autoCapitalize='none'
+                    secureTextEntry={true}
                 />
 
                 <SubmitButton onPress={this.handleSubmit} />
