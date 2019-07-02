@@ -35,7 +35,7 @@ const StackNavigator = createStackNavigator({
     ),
     headerStyle: {
     },
-    headerTintColor: 'white',
+    headerTintColor: 'black',
     headerTitleStyle: {
       fontWeight: 'bold'
     }
@@ -51,7 +51,7 @@ const TabNavigator = createBottomTabNavigator({
   }),
   tabBarOptions: {
     activeTintColor: aquaMarine,
-    inactiveTintColor: 'gray'
+    inactiveTintColor: 'black'
   }
 });
 

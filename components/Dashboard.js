@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from "react-native";
+import {View, Text, FlatList, StyleSheet, TouchableOpacity, Button, Image} from "react-native";
 
 import { connect } from 'react-redux';
 
@@ -7,7 +7,7 @@ import Clinic from '../utils/utility-components/Clinic';
 import SignOutButton from '../utils/utility-components/SignOutButton';
 
 import {handleClinics, eraseClinic, grabAllInvoices} from "../actions/shared";
-import {deleteToken, getUser} from "../utils/helpers";
+import {deleteUser, getUser} from "../utils/helpers";
 import {logOutUser} from "../actions/user";
 import {aquaMarine} from "../utils/colors";
 import {setTotal} from "../actions/total";
@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
         headerRight: (
             <SignOutButton
                 onPress={() => {
-                    deleteToken().then((result) => {
+                    deleteUser().then((result) => {
                         console.log(result);
                         navigation.state.params.dispatch(logOutUser());
                         navigation.navigate('Signup');
@@ -75,7 +75,7 @@ class Dashboard extends React.Component {
                     style={styles.clinicButton}
                     onPress={() => this.props.navigation.navigate('Clinics')}
                 >
-                    <Text style={{color: 'white', fontWeight: 'bold'}}>Add Clinic</Text>
+                    <Text style={{color: 'black', fontWeight: 'bold'}}>Add Clinic</Text>
                 </TouchableOpacity>
 
                 <View style={styles.list}>

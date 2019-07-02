@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, KeyboardAvoidingView, TextInput } from 'react-native';
+import {Text, StyleSheet, KeyboardAvoidingView, TextInput, Image} from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 import { createClinic } from "../actions/shared";

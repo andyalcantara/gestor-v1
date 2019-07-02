@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     label: {
-        color: aquaMarine,
+        color: 'black',
         fontSize: 15,
         marginTop: 15,
     },

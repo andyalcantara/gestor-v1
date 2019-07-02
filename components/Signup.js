@@ -26,10 +26,7 @@ class Signup extends React.Component {
 
     static navigationOptions = {
         title: 'Sign Up',
-        headerBackTitle: null,
-        headerBackground: (
-            <Image source={{uri: '../assets/bar.jpg'}} />
-        )
+        headerBackTitle: null
     };
 
     componentDidMount() {
@@ -132,7 +129,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     label: {
-        color: aquaMarine,
+        color: 'black',
         fontSize: 15,
         marginTop: 15,
     },

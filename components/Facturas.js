@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, StyleSheet, Image} from 'react-native';
 
 import { connect } from 'react-redux';
 
@@ -19,7 +19,7 @@ class Facturas extends React.Component {
 
     static navigationOptions = ({navigation}) => ({
         title: navigation.getParam('title'),
-        headerBackTitle: null
+        headerBackTitle: null,
     });
 
     componentDidMount() {
@@ -76,7 +76,7 @@ class Facturas extends React.Component {
                     style={styles.invoiceButton}
                     onPress={() => this.props.navigation.navigate('Factura', {clinicId: clinicId})}
                 >
-                    <Text style={{color: 'white'}}>Add Invoice</Text>
+                    <Text style={{color: 'black'}}>Add Invoice</Text>
                 </TouchableOpacity>
 
                 <FlatList
@@ -96,7 +96,7 @@ class Facturas extends React.Component {
                 {show ? <Text>Total Income: {income}</Text> : <Text></Text>}
 
                 <TouchableOpacity style={styles.invoiceButton} onPress={() => this.handleIncomeCalc(clinicId)}>
-                    <Text style={{color: 'white'}}>Calculate Total</Text>
+                    <Text style={{color: 'black'}}>Calculate Total</Text>
                 </TouchableOpacity>
             </View>
         );

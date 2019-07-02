@@ -9,7 +9,7 @@ import {
     ScrollView,
     TouchableOpacity,
     SafeAreaView,
-    Modal
+    Modal, Image
 } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
@@ -21,7 +21,7 @@ import {aquaMarine} from "../utils/colors";
 class Factura extends React.Component {
 
     static navigationOptions = {
-        title: 'Add Factura'
+        title: 'Add Factura',
     };
 
     state = {
@@ -74,7 +74,6 @@ class Factura extends React.Component {
         const { dispatch, navigation } = this.props;
 
         let clinicId = navigation.getParam('clinicId');
-        console.log(clinicId, 'CLinic id from Factura');
         getUser().then(result => {
             let user = JSON.parse(result);
             dispatch(createInvoice(clinicId, user.token, {
@@ -141,7 +140,7 @@ class Factura extends React.Component {
                             style={styles.addTreatmentBtn}
                             onPress={() => this.setState({modalOpen: true})}
                         >
-                            <Text style={{color: 'white'}}>Add Treatment</Text>
+                            <Text style={{color: 'black'}}>Add Treatment</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -160,7 +159,7 @@ class Factura extends React.Component {
                             <Text>X</Text>
                         </TouchableOpacity>
 
-                        <Text>Nombre de Tratamiento:</Text>
+                        <Text>Nombre del Tratamiento:</Text>
                         <TextInput onChangeText={this.handleTreatName} />
 
                         <Text>Precio</Text>
