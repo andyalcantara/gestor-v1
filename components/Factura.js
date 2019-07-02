@@ -29,6 +29,7 @@ class Factura extends React.Component {
         name: '',
         tratamiento: '',
         precio: 0,
+        precioTotal: 0,
         modalOpen: false,
         treatName: '',
         tratamientos: [],
@@ -70,8 +71,17 @@ class Factura extends React.Component {
         });
     };
 
+    handleTreatments = () => {
+        const { tratamiento, precio } = this.state;
+
+        this.setState(oldState => ({
+            tratamientos: oldState.tratamientos.concat(tratamiento),
+            precioTotal: oldState.precioTotal + parseFloat(precio)
+        }));
+    };
+
     handleSubmit = () => {
-        const { hc, name, tratamiento, precio } = this.state;
+        const { hc, name, tratamiento, tratamientos, precioTotal } = this.state;
         const { dispatch, navigation } = this.props;
 
         let clinicId = navigation.getParam('clinicId');
@@ -81,7 +91,8 @@ class Factura extends React.Component {
                 clinicHistory: hc,
                 name: name,
                 treatment: tratamiento,
-                price: precio
+                price: precioTotal,
+                treatments: tratamientos
             }));
             navigation.goBack();
         });
@@ -104,6 +115,10 @@ class Factura extends React.Component {
 
     render() {
         const { treatments } = this.props;
+        let { tratamientos } = this.state;
+
+        console.log(tratamientos, 'Tratamientos');
+
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
                 <ScrollView style={{height: '100%'}}>
@@ -113,7 +128,15 @@ class Factura extends React.Component {
                     <Text style={styles.label}>Name</Text>
                     <TextInput style={styles.input} onChangeText={this.handleName} />
 
-                    <Text style={styles.label}>Tratamiento</Text>
+                    <Text style={styles.label}>Tratamientos</Text>
+                    {tratamientos.length > 0 ?
+                        tratamientos.map(tratamiento => (
+                            <View key={tratamiento} style={{flexDirection: 'row'}}>
+                                <Text>[{tratamiento}]</Text>
+                            </View>
+                        )) :
+                        <Text></Text>
+                    }
 
                     <View style={{flex: 2, alignItems: 'center'}}>
                         <Picker
@@ -138,7 +161,7 @@ class Factura extends React.Component {
                         </Picker>
                         <TouchableOpacity
                             style={styles.plusBtn}
-                            onPress={() => alert("I was pressed")}
+                            onPress={this.handleTreatments}
                         >
                             <Text style={{color: 'black'}}>+</Text>
                         </TouchableOpacity>
@@ -223,6 +246,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ treatments }) {
+    console.log(Object.keys(treatments).map(key => treatments[key]));
     return {
         treatments: Object.keys(treatments).map(key => treatments[key])
     }

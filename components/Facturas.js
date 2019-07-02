@@ -86,7 +86,7 @@ class Facturas extends React.Component {
                                                 onPress={() => alert('I was pressed!')}
                                                 name={item.name}
                                                 hc={item.clinicHistory}
-                                                tto={item.treatment}
+                                                tto={item.treatments}
                                                 price={item.price}
                                             />}
                     keyExtractor={(item) => item._id}
