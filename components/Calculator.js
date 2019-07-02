@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     btnTxt: {
-        color: 'white'
+        color: 'black'
     }
 });
 

@@ -21,6 +21,8 @@ import { Provider } from 'react-redux';
 import { rootReducer } from './reducers';
 import middleware from './middleware';
 
+import { Ionicons } from '@expo/vector-icons';
+
 const StackNavigator = createStackNavigator({
   Signup: { screen: Signup },
   Dashboard: { screen: Dashboard },
@@ -47,7 +49,17 @@ const TabNavigator = createBottomTabNavigator({
   Total: { screen: Calculator }
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ tintColor }) => {
+      const { routeName } = navigation.state;
 
+      if (routeName === 'Pacientes') {
+        return <Ionicons name="ios-people" size={30} color={tintColor} />
+      }
+
+      if (routeName === 'Total') {
+        return <Ionicons name="ios-cash" size={30} color={tintColor} />
+      }
+    }
   }),
   tabBarOptions: {
     activeTintColor: aquaMarine,

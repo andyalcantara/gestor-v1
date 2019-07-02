@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d12bf7-03c0-4c26-bb66-dea4e3f335a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Clinics.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Clinics.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Factura.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Factura.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Facturas.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Facturas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Signin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calculator.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -67,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Factura.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+            <state relative-caret-position="-538">
+              <caret line="75" column="55" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -92,10 +86,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/actions/user.js">
+        <entry file="file://$PROJECT_DIR$/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            <state relative-caret-position="523">
+              <caret line="55" column="71" selection-start-line="55" selection-start-column="71" selection-end-line="55" selection-end-column="71" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/Calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+            <state relative-caret-position="551">
+              <caret line="190" column="21" selection-start-line="190" selection-start-column="21" selection-end-line="190" selection-end-column="21" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -174,7 +171,6 @@
         <option value="$PROJECT_DIR$/actions/total.js" />
         <option value="$PROJECT_DIR$/reducers/total.js" />
         <option value="$PROJECT_DIR$/reducers/index.js" />
-        <option value="$PROJECT_DIR$/components/Calculator.js" />
         <option value="$PROJECT_DIR$/actions/treatment.js" />
         <option value="$PROJECT_DIR$/reducers/treatment.js" />
         <option value="$PROJECT_DIR$/actions/shared.js" />
@@ -183,12 +179,13 @@
         <option value="$PROJECT_DIR$/utils/utility-components/SignOutButton.js" />
         <option value="$PROJECT_DIR$/utils/utility-components/SubmitButton.js" />
         <option value="$PROJECT_DIR$/components/Signin.js" />
-        <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/components/Signup.js" />
         <option value="$PROJECT_DIR$/components/Clinics.js" />
         <option value="$PROJECT_DIR$/components/Dashboard.js" />
         <option value="$PROJECT_DIR$/components/Facturas.js" />
         <option value="$PROJECT_DIR$/components/Factura.js" />
+        <option value="$PROJECT_DIR$/App.js" />
+        <option value="$PROJECT_DIR$/components/Calculator.js" />
       </list>
     </option>
   </component>
@@ -303,12 +300,12 @@
       <workItem from="1561993433262" duration="1506000" />
       <workItem from="1562072824052" duration="212000" />
       <workItem from="1562073308535" duration="8000" />
-      <workItem from="1562079149721" duration="1672000" />
+      <workItem from="1562079149721" duration="2216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150746000" />
+    <option name="totallyTimeSpent" value="151290000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,7 +334,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.19937694" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.1995842" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -509,16 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/actions/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -530,16 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Calculator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -605,8 +582,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Factura.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
+        <state relative-caret-position="-538">
+          <caret line="75" column="55" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="55" column="71" selection-start-line="55" selection-start-column="71" selection-end-line="55" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Calculator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="190" column="21" selection-start-line="190" selection-start-column="21" selection-end-line="190" selection-end-column="21" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
