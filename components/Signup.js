@@ -91,10 +91,18 @@ class Signup extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
                 <Text style={styles.label}>Email</Text>
-                <TextInput style={styles.input} onChangeText={this.handleEmail} />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={this.handleEmail}
+                    autoCapitalize='none'
+                />
 
                 <Text style={styles.label}>Password</Text>
-                <TextInput style={styles.input} onChangeText={this.handlePassword} />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={this.handlePassword}
+                    autoCapitalize='none'
+                />
 
                 <SubmitButton onPress={this.handleSubmit} />
 
