@@ -31,6 +31,7 @@ class Factura extends React.Component {
         precio: 0,
         modalOpen: false,
         treatName: '',
+        tratamientos: [],
         treatPrice: 0
     };
 
@@ -135,6 +136,12 @@ class Factura extends React.Component {
                                 ))
                             }
                         </Picker>
+                        <TouchableOpacity
+                            style={styles.plusBtn}
+                            onPress={() => alert("I was pressed")}
+                        >
+                            <Text style={{color: 'black'}}>+</Text>
+                        </TouchableOpacity>
 
                         <TouchableOpacity
                             style={styles.addTreatmentBtn}
@@ -193,7 +200,7 @@ const styles = StyleSheet.create({
        marginTop: 10
     },
     addTreatmentBtn: {
-        marginTop: 260,
+        marginTop: 0,
         backgroundColor: aquaMarine,
         borderRadius: 25,
         height: 40,
@@ -201,6 +208,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingLeft: 10,
         paddingRight: 10
+    },
+    plusBtn: {
+        marginTop: 220,
+        backgroundColor: aquaMarine,
+        borderRadius: 25,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingLeft: 20,
+        paddingRight: 20,
+        alignSelf: 'flex-end'
     }
 });
 
