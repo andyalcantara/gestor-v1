@@ -110,7 +110,10 @@ class Signup extends React.Component {
                 <View style={styles.login}>
                     <Text>Already have an accout</Text>
                     <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('Signin')}
+                        onPress={
+                            () => this.props.navigation
+                                .navigate('Signin')
+                        }
                         style={{marginLeft: 10}}
                     >
                         <Text style={styles.signin}>Login</Text>

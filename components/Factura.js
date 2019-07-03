@@ -9,12 +9,16 @@ import {
     ScrollView,
     TouchableOpacity,
     SafeAreaView,
-    Modal, Image
+    Modal
 } from 'react-native';
 
 import SubmitButton from '../utils/utility-components/SubmitButton';
 import {getUser} from "../utils/helpers";
-import {createInvoice, createTreatment, grabTreatments} from "../actions/shared";
+import {
+    createInvoice,
+    createTreatment,
+    grabTreatments
+} from "../actions/shared";
 import { connect } from "react-redux";
 import {aquaMarine} from "../utils/colors";
 
@@ -117,8 +121,6 @@ class Factura extends React.Component {
         const { treatments } = this.props;
         let { tratamientos } = this.state;
 
-        console.log(tratamientos, 'Tratamientos');
-
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
                 <ScrollView style={{height: '100%'}}>
@@ -185,7 +187,9 @@ class Factura extends React.Component {
                     visible={this.state.modalOpen}
                 >
                     <SafeAreaView>
-                        <TouchableOpacity onPress={() => this.setState({modalOpen: false})}>
+                        <TouchableOpacity onPress={
+                            () => this.setState({modalOpen: false})
+                        }>
                             <Text>X</Text>
                         </TouchableOpacity>
 
@@ -246,7 +250,6 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ treatments }) {
-    console.log(Object.keys(treatments).map(key => treatments[key]));
     return {
         treatments: Object.keys(treatments).map(key => treatments[key])
     }

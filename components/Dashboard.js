@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, TouchableOpacity, Button, Image} from "react-native";
+import {
+    View,
+    Text,
+    FlatList,
+    StyleSheet,
+    TouchableOpacity
+} from "react-native";
 
 import { connect } from 'react-redux';
 
@@ -10,7 +16,6 @@ import {handleClinics, eraseClinic, grabAllInvoices} from "../actions/shared";
 import {deleteUser, getUser} from "../utils/helpers";
 import {logOutUser} from "../actions/user";
 import {aquaMarine} from "../utils/colors";
-import {setTotal} from "../actions/total";
 
 class Dashboard extends React.Component {
 

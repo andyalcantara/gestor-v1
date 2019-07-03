@@ -18,7 +18,8 @@ export default function invoiceReducer(state = {}, action) {
             const { invoices } = action;
 
             let objInvoices = {};
-            let arrayInvoices = Object.keys(invoices).map(key => invoices[key]);
+            let arrayInvoices = Object.keys(invoices)
+                                    .map(key => invoices[key]);
 
             for (let i = 0; i < arrayInvoices.length; i++) {
                 objInvoices[arrayInvoices[i]._id] = arrayInvoices[i];
@@ -33,7 +34,8 @@ export default function invoiceReducer(state = {}, action) {
             const { allInvoices } = action;
 
             let objAllInvoices = {};
-            let arrayAllInvoices = Object.keys(allInvoices).map(key => allInvoices[key]);
+            let arrayAllInvoices = Object.keys(allInvoices)
+                                    .map(key => allInvoices[key]);
 
             for (let i = 0; i < arrayAllInvoices.length; i++) {
                 objAllInvoices[arrayAllInvoices[i]._id] = arrayAllInvoices[i];

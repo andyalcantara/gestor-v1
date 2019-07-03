@@ -77,14 +77,22 @@ class Calculator extends React.Component {
                 <Text>Total para casa: {totalIncome}</Text>
 
                 <View style={styles.inputContainer}>
-                    <TouchableOpacity onPress={this.handleAddingCost} style={styles.addLabCostBtn}>
+                    <TouchableOpacity
+                        onPress={this.handleAddingCost}
+                        style={styles.addLabCostBtn}
+                    >
                         <Text style={styles.btnTxt}>Costo de Laboratorio</Text>
                     </TouchableOpacity>
 
-                    {addingCost === true ? <TextInput style={styles.input} onChangeText={this.handleCost} /> : <Text></Text>}
+                    {addingCost === true ?
+                        <TextInput style={styles.input} onChangeText={this.handleCost} />
+                        : <Text></Text>}
 
                     {addingCost === true ? (
-                        <TouchableOpacity onPress={this.applyCost} style={styles.aplicarBtn}>
+                        <TouchableOpacity
+                            onPress={this.applyCost}
+                            style={styles.aplicarBtn}
+                        >
                             <Text style={styles.btnTxt}>Aplicar</Text>
                         </TouchableOpacity>
                     ) : <Text></Text>}

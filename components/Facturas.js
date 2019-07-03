@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, FlatList, StyleSheet, Image} from 'react-native';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    FlatList,
+    StyleSheet
+} from 'react-native';
 
 import { connect } from 'react-redux';
 
@@ -74,7 +80,9 @@ class Facturas extends React.Component {
             <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.invoiceButton}
-                    onPress={() => this.props.navigation.navigate('Factura', {clinicId: clinicId})}
+                    onPress={
+                        () => this.props.navigation
+                            .navigate('Factura', {clinicId: clinicId})}
                 >
                     <Text style={{color: 'black'}}>Add Invoice</Text>
                 </TouchableOpacity>
@@ -95,7 +103,10 @@ class Facturas extends React.Component {
                 {show ? <Text>Total Facturado: {total}</Text> : <Text></Text>}
                 {show ? <Text>Total Income: {income}</Text> : <Text></Text>}
 
-                <TouchableOpacity style={styles.invoiceButton} onPress={() => this.handleIncomeCalc(clinicId)}>
+                <TouchableOpacity
+                    style={styles.invoiceButton}
+                    onPress={() => this.handleIncomeCalc(clinicId)}
+                >
                     <Text style={{color: 'black'}}>Calculate Total</Text>
                 </TouchableOpacity>
             </View>
@@ -129,10 +140,11 @@ function mapStateToProps({ invoices, clinics}) {
     });
 
     return {
-        invoices: Object.keys(invoices).map(key => invoices[key]).sort((a, b) => {
-            let aDate = new Date(a.date);
-            let bDate = new Date(b.date);
-            return bDate - aDate;
+        invoices: Object.keys(invoices).map(key => invoices[key])
+            .sort((a, b) => {
+                let aDate = new Date(a.date);
+                let bDate = new Date(b.date);
+                return bDate - aDate;
         }),
         clinics: clinics
     }
