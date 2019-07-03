@@ -192,20 +192,25 @@ class Factura extends React.Component {
                     transparent={false}
                     visible={this.state.modalOpen}
                 >
-                    <SafeAreaView>
-                        <TouchableOpacity onPress={
-                            () => this.setState({modalOpen: false})
-                        }>
-                            <Text>X</Text>
-                        </TouchableOpacity>
+                    <SafeAreaView style={styles.modalContainer}>
+                        <View style={{padding: 10}}>
+                            <TouchableOpacity
+                                style={{alignSelf: 'flex-end', marginRight: 40}}
+                                onPress={
+                                    () => this.setState({modalOpen: false})
+                                }
+                            >
+                                <Text>X</Text>
+                            </TouchableOpacity>
 
-                        <Text>Nombre del Tratamiento:</Text>
-                        <TextInput onChangeText={this.handleTreatName} />
+                            <Text>Nombre del Tratamiento:</Text>
+                            <TextInput style={styles.input} onChangeText={this.handleTreatName} />
 
-                        <Text>Precio</Text>
-                        <TextInput onChangeText={this.handleTreatPrice} />
+                            <Text>Precio</Text>
+                            <TextInput style={styles.input} onChangeText={this.handleTreatPrice} />
 
-                        <SubmitButton onPress={this.handleSubmitTreatment} />
+                            <SubmitButton onPress={this.handleSubmitTreatment} />
+                        </View>
                     </SafeAreaView>
                 </Modal>
 
@@ -220,6 +225,13 @@ const styles = StyleSheet.create({
        justifyContent: 'center',
        padding: 10
    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        marginBottom: 50,
+        paddingLeft: 30
+
+    },
     input: {
         borderColor: aquaMarine,
         borderRadius: 25,
