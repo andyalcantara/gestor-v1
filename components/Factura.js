@@ -43,6 +43,12 @@ class Factura extends React.Component {
     componentDidMount() {
         const { dispatch, navigation } = this.props;
         const clinicId = navigation.getParam('clinicId');
+        const treatment = navigation.getParam('treatment');
+
+        this.setState({
+            tratamiento: treatment
+        });
+
         getUser().then(result => {
             let user = JSON.parse(result);
             if (user) {
@@ -119,7 +125,7 @@ class Factura extends React.Component {
 
     render() {
         const { treatments } = this.props;
-        let { tratamientos } = this.state;
+        const { tratamientos } = this.state;
 
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
@@ -145,9 +151,9 @@ class Factura extends React.Component {
                             selectedValue={this.state.precio}
                             style={{height: 50, width: 200}}
                             itemStyle={{fontSize: 13}}
-                            onValueChange={(itemValue, itemIndex) => {
+                            onValueChange={(itemValue, itemPosition) => {
                                 this.setState({
-                                    tratamiento: treatments[itemIndex].name,
+                                    tratamiento: treatments[itemPosition].name,
                                     precio: itemValue})
                             }}
                         >

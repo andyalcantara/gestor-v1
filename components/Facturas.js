@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import Invoice from '../utils/utility-components/Invoice';
 import {getUser} from "../utils/helpers";
-import {grabInvoices} from "../actions/shared";
+import {grabInvoices, grabTreatments} from "../actions/shared";
 import {aquaMarine} from "../utils/colors";
 
 class Facturas extends React.Component {
@@ -44,6 +44,7 @@ class Facturas extends React.Component {
             let user = JSON.parse(result);
             if (user) {
                 dispatch(grabInvoices(clinicId, user.id, user.token));
+                dispatch(grabTreatments(clinicId, user.token));
             } else {
                 navigation.navigate('Signup');
             }
@@ -68,7 +69,7 @@ class Facturas extends React.Component {
     };
 
     render() {
-        const { invoices, navigation } = this.props;
+        const { invoices, navigation, treatments } = this.props;
         const { total, show, income } = this.state;
 
         let clinicId = navigation.getParam('clinicId');
@@ -82,7 +83,7 @@ class Facturas extends React.Component {
                     style={styles.invoiceButton}
                     onPress={
                         () => this.props.navigation
-                            .navigate('Factura', {clinicId: clinicId})}
+                            .navigate('Factura', {clinicId: clinicId, treatment: treatments[0].name})}
                 >
                     <Text style={{color: 'black'}}>Add Invoice</Text>
                 </TouchableOpacity>
@@ -132,12 +133,14 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapStateToProps({ invoices, clinics}) {
+function mapStateToProps({ invoices, clinics, treatments}) {
 
     let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
     let acInvoices = invoicesArray.filter(invoice => {
 
     });
+
+    console.log(treatments, "TREATMENTS");
 
     return {
         invoices: Object.keys(invoices).map(key => invoices[key])
@@ -146,7 +149,8 @@ function mapStateToProps({ invoices, clinics}) {
                 let bDate = new Date(b.date);
                 return bDate - aDate;
         }),
-        clinics: clinics
+        clinics: clinics,
+        treatments: Object.keys(treatments).map(key => treatments[key])
     }
 }
 

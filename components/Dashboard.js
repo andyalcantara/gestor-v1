@@ -73,7 +73,6 @@ class Dashboard extends React.Component {
     render() {
 
         const { clinics, navigation, total } = this.props;
-        console.log(total, 'from render method');
         return (
             <View style={styles.container}>
                 <TouchableOpacity
