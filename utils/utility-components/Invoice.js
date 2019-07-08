@@ -6,7 +6,7 @@ const Invoice = (props) => {
     return (
         <TouchableOpacity onPress={props.onPress} style={styles.container}>
             <View style={styles.nameHC}>
-                <Text>{props.name}</Text>
+                <Text>Paciente: {props.name}</Text>
                 <Text>HC: {props.hc}</Text>
             </View>
 
@@ -14,6 +14,8 @@ const Invoice = (props) => {
                 <Text>TTO: {props.tto}</Text>
                 <Text>Precio: {props.price}</Text>
             </View>
+
+            <TouchableOpacity/>
         </TouchableOpacity>
     );
 };
@@ -21,24 +23,26 @@ const Invoice = (props) => {
 const styles = StyleSheet.create({
    container: {
        flexDirection: 'row',
-       justifyContent: 'space-evenly',
+       alignItems: 'center',
        borderColor: aquaMarine,
        borderRadius: 8,
        borderWidth: 1,
-       height: 70,
+       height: 100,
        marginTop: 10,
    },
     nameHC: {
-       width: '50%',
-       alignItems: 'flex-start',
-       justifyContent: 'space-evenly',
+        width: '50%',
+        alignItems: 'flex-start',
+        justifyContent: 'space-evenly',
         marginLeft: 15,
+        height: '100%'
     },
     ttoPrecio: {
-       width: '50%',
-       alignItems: 'flex-start',
-       justifyContent: 'space-evenly',
+        width: '50%',
+        alignItems: 'flex-start',
+        justifyContent: 'space-evenly',
         marginLeft: 15,
+        height: '100%'
     }
 });
 
