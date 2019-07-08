@@ -135,13 +135,6 @@ const styles = StyleSheet.create({
 
 function mapStateToProps({ invoices, clinics, treatments}) {
 
-    let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
-    let acInvoices = invoicesArray.filter(invoice => {
-
-    });
-
-    console.log(treatments, "TREATMENTS");
-
     return {
         invoices: Object.keys(invoices).map(key => invoices[key])
             .sort((a, b) => {
