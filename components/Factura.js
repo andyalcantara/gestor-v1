@@ -21,6 +21,7 @@ import {
 } from "../actions/shared";
 import { connect } from "react-redux";
 import {aquaMarine} from "../utils/colors";
+import { Ionicons } from '@expo/vector-icons';
 
 class Factura extends React.Component {
 
@@ -193,24 +194,26 @@ class Factura extends React.Component {
                     visible={this.state.modalOpen}
                 >
                     <SafeAreaView style={styles.modalContainer}>
-                        <View style={{padding: 10}}>
-                            <TouchableOpacity
-                                style={{alignSelf: 'flex-end', marginRight: 40}}
-                                onPress={
-                                    () => this.setState({modalOpen: false})
-                                }
-                            >
-                                <Text>X</Text>
-                            </TouchableOpacity>
+                        <KeyboardAvoidingView behavior="position" enabled>
+                            <View style={{padding: 10}}>
+                                <TouchableOpacity
+                                    style={{alignSelf: 'flex-end', marginRight: 40}}
+                                    onPress={
+                                        () => this.setState({modalOpen: false})
+                                    }
+                                >
+                                    <Ionicons name="ios-close" size={30} color="black" />
+                                </TouchableOpacity>
 
-                            <Text>Nombre del Tratamiento:</Text>
-                            <TextInput style={styles.input} onChangeText={this.handleTreatName} />
+                                <Text>Nombre del Tratamiento:</Text>
+                                <TextInput style={styles.input} onChangeText={this.handleTreatName} />
 
-                            <Text>Precio</Text>
-                            <TextInput style={styles.input} onChangeText={this.handleTreatPrice} />
+                                <Text>Precio</Text>
+                                <TextInput style={styles.input} onChangeText={this.handleTreatPrice} />
 
-                            <SubmitButton onPress={this.handleSubmitTreatment} />
-                        </View>
+                                <SubmitButton onPress={this.handleSubmitTreatment} />
+                            </View>
+                        </KeyboardAvoidingView>
                     </SafeAreaView>
                 </Modal>
 
