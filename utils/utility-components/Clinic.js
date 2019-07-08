@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {aquaMarine} from "../colors";
+import { Ionicons } from '@expo/vector-icons';
 
 const Clinic = (props) => {
     return (
@@ -11,7 +12,7 @@ const Clinic = (props) => {
                 <Text>{props.invoices} invoices</Text>
 
                 <TouchableOpacity onPress={props.onDelete}>
-                    <Text style={{color: aquaMarine}}>Delete</Text>
+                    <Ionicons name="ios-trash" size={30} color={aquaMarine} />
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>

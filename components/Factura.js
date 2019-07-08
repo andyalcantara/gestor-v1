@@ -172,7 +172,7 @@ class Factura extends React.Component {
                             style={styles.plusBtn}
                             onPress={this.handleTreatments}
                         >
-                            <Text style={{color: 'black'}}>+</Text>
+                            <Ionicons name="ios-add" size={30} color="black" />
                         </TouchableOpacity>
 
                         <TouchableOpacity
