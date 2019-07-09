@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d12bf7-03c0-4c26-bb66-dea4e3f335a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/Calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calculator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Factura.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Factura.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/helpers.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,14 +39,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="323">
+              <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utils/helpers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -57,18 +65,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Facturas.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="131" column="22" lean-forward="true" selection-start-line="131" selection-start-column="22" selection-end-line="131" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -157,7 +153,6 @@
         <option value="$PROJECT_DIR$/middleware/index.js" />
         <option value="$PROJECT_DIR$/middleware/logger.js" />
         <option value="$PROJECT_DIR$/reducers/user.js" />
-        <option value="$PROJECT_DIR$/utils/helpers.js" />
         <option value="$PROJECT_DIR$/reducers/selectedClinic.js" />
         <option value="$PROJECT_DIR$/actions/invoice.js" />
         <option value="$PROJECT_DIR$/actions/user.js" />
@@ -183,6 +178,7 @@
         <option value="$PROJECT_DIR$/components/Clinics.js" />
         <option value="$PROJECT_DIR$/components/Factura.js" />
         <option value="$PROJECT_DIR$/components/Calculator.js" />
+        <option value="$PROJECT_DIR$/utils/helpers.js" />
       </list>
     </option>
   </component>
@@ -215,12 +211,7 @@
             <path>
               <item name="gestor" type="b2602c69:ProjectViewProjectNode" />
               <item name="gestor" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor" type="462c0819:PsiDirectoryNode" />
-              <item name="reducers" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -294,12 +285,12 @@
       <workItem from="1562079149721" duration="10569000" />
       <workItem from="1562096997866" duration="10000" />
       <workItem from="1562175563326" duration="6217000" />
-      <workItem from="1562593451444" duration="8539000" />
+      <workItem from="1562593451444" duration="9352000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174409000" />
+    <option name="totallyTimeSpent" value="175222000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -362,13 +353,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/bar.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/colors.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -599,11 +583,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="323">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
         </state>
       </provider>
     </entry>

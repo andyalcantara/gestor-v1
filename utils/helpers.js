@@ -16,6 +16,14 @@ export function deleteUser() {
     return AsyncStorage.removeItem('user');
 }
 
+export function saveDiscount(discount) {
+    return AsyncStorage.setItem('discount', JSON.stringify({discount}));
+}
+
+export function getDiscount() {
+    return AsyncStorage.getItem('discount');
+}
+
 export function getToken() {
     return AsyncStorage.getItem('token');
 }
