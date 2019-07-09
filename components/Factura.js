@@ -87,41 +87,62 @@ class Factura extends React.Component {
 
         this.setState(oldState => ({
             tratamientos: oldState.tratamientos.concat(tratamiento),
-            precioTotal: oldState.precioTotal + parseFloat(precio)
+            precioTotal: (oldState.precioTotal * 100 + parseFloat(precio) * 100) / 100
         }));
     };
 
     handleSubmit = () => {
-        const { hc, name, tratamiento, tratamientos, precioTotal } = this.state;
+        const { hc, name, tratamiento, tratamientos, precioTotal, precio } = this.state;
         const { dispatch, navigation } = this.props;
 
         let clinicId = navigation.getParam('clinicId');
-        getUser().then(result => {
-            let user = JSON.parse(result);
-            dispatch(createInvoice(clinicId, user.token, {
-                clinicHistory: hc,
-                name: name,
-                treatment: tratamiento,
-                price: precioTotal,
-                treatments: tratamientos
-            }));
-            navigation.goBack();
-        });
+
+        if (hc === 0 || name === '' || tratamiento === '') {
+            alert('Hola!! Todos los campos son requeridos')
+        } else {
+            getUser().then(result => {
+                let user = JSON.parse(result);
+
+                if (precioTotal !== 0) {
+                    dispatch(createInvoice(clinicId, user.token, {
+                        clinicHistory: hc,
+                        name: name,
+                        treatment: tratamiento,
+                        price: precioTotal,
+                        treatments: tratamientos
+                    }));
+                    navigation.goBack();
+                } else {
+                    dispatch(createInvoice(clinicId, user.token, {
+                        clinicHistory: hc,
+                        name: name,
+                        treatment: tratamiento,
+                        price: precio,
+                        treatments: tratamientos
+                    }));
+                    navigation.goBack();
+                }
+            });
+        }
     };
 
     handleSubmitTreatment = () => {
         const { treatName, treatPrice } = this.state;
         const { navigation, dispatch } = this.props;
 
-        let clinicId = navigation.getParam('clinicId');
-        getUser().then(result => {
-            let user = JSON.parse(result);
-            let body = {
-                name: treatName,
-                value: treatPrice
-            };
-            dispatch(createTreatment(clinicId, user.token, body));
-        });
+        if (treatName === '' || treatPrice === 0) {
+            alert('Hola!! Todos los campos son requeridos');
+        } else {
+            let clinicId = navigation.getParam('clinicId');
+            getUser().then(result => {
+                let user = JSON.parse(result);
+                let body = {
+                    name: treatName,
+                    value: treatPrice
+                };
+                dispatch(createTreatment(clinicId, user.token, body));
+            });
+        }
     };
 
     render() {
@@ -132,10 +153,18 @@ class Factura extends React.Component {
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
                 <ScrollView style={{height: '100%'}}>
                     <Text style={styles.label}>Historia Clinica</Text>
-                    <TextInput style={styles.input} onChangeText={this.handleHC} />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={this.handleHC}
+                        value={this.state.hc.toString()}
+                    />
 
                     <Text style={styles.label}>Name</Text>
-                    <TextInput style={styles.input} onChangeText={this.handleName} />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={this.handleName}
+                        value={this.state.name}
+                    />
 
                     <Text style={styles.label}>Tratamientos</Text>
                     {tratamientos.length > 0 ?
