@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux';
 import {aquaMarine} from "../utils/colors";
 import {setTotal} from "../actions/total";
+import {saveDiscount, getDiscount} from '../utils/helpers';
 
 class Calculator extends React.Component {
 
@@ -22,7 +23,16 @@ class Calculator extends React.Component {
 
     componentDidMount() {
         const { dispatch, total } = this.props;
+
         dispatch(setTotal(total));
+
+        getDiscount().then((cost) => {
+            let acCost = JSON.parse(cost).discount;
+            console.log(acCost, 'THIS IS COST FROM ASYNC STORAGE');
+            this.setState({
+                labCost: acCost
+            });
+        });
     }
 
     handleAddingCost = () => {
@@ -45,10 +55,15 @@ class Calculator extends React.Component {
     };
 
     handleCost = (text) => {
-        let cost = parseFloat(text);
+        const { labCost } = this.state;
+
+        let cost = (parseFloat(text) * 100) / 100;
+        let finalCost = cost + labCost;
+
         this.setState({
-            labCost: (cost * 100) / 100
+            labCost: finalCost
         });
+        saveDiscount(finalCost);
     };
 
     render() {
@@ -81,7 +96,7 @@ class Calculator extends React.Component {
                     keyExtractor={(item) => item._id}
                 />
 
-                <Text>Total facturado: {total}</Text>
+                <Text>Total facturado: {total - labCost}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
 
                 <View style={styles.inputContainer}>
