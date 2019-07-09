@@ -235,10 +235,16 @@ class Factura extends React.Component {
                                 </TouchableOpacity>
 
                                 <Text>Nombre del Tratamiento:</Text>
-                                <TextInput style={styles.input} onChangeText={this.handleTreatName} />
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={this.handleTreatName}
+                                />
 
                                 <Text>Precio</Text>
-                                <TextInput style={styles.input} onChangeText={this.handleTreatPrice} />
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={this.handleTreatPrice}
+                                />
 
                                 <SubmitButton onPress={this.handleSubmitTreatment} />
                             </View>

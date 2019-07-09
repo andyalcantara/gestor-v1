@@ -33,13 +33,21 @@ class Calculator extends React.Component {
 
     applyCost = () => {
         // Call dispatch to set total
+        const { dispatch, total } = this.props;
+        const { labCost } = this.state;
 
+        let newTotal = total - labCost;
+
+        dispatch(setTotal(newTotal));
+        this.setState({
+            addingCost: false
+        })
     };
 
     handleCost = (text) => {
         let cost = parseFloat(text);
         this.setState({
-            labCost: cost
+            labCost: (cost * 100) / 100
         });
     };
 
