@@ -42,22 +42,27 @@ class Signin extends React.Component {
         const { dispatch, navigation } = this.props;
 
         let { email, password } = this.state;
-        fetch('http://localhost:3000/user/signin', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email: email, password: password}),
-        }).then(response => response.json())
-            .then(data => {
-                saveUser(data.id, data.token);
-                dispatch(loginUser(data.id, data.token));
 
-                this.setState({
-                    email: '',
-                    password: ''
+        if (email === '' || password === '') {
+            alert('Hola!! Todos los campos son requeridos')
+        } else {
+            fetch('http://localhost:3000/user/signin', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email: email, password: password}),
+            }).then(response => response.json())
+                .then(data => {
+                    saveUser(data.id, data.token);
+                    dispatch(loginUser(data.id, data.token));
+
+                    this.setState({
+                        email: '',
+                        password: ''
+                    });
+
+                    navigation.navigate('Dashboard', {token: data.token, userId: data.id});
                 });
-
-                navigation.navigate('Dashboard', {token: data.token, userId: data.id});
-            });
+        }
     };
 
     render() {
@@ -67,12 +72,15 @@ class Signin extends React.Component {
                 <TextInput
                     style={styles.input}
                     onChangeText={this.handleEmail}
-                    autoCapitalize='none' />
+                    value={this.state.email}
+                    autoCapitalize='none'
+                />
 
                 <Text style={styles.label}>Password</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={this.handlePassword}
+                    value={this.state.password}
                     autoCapitalize='none'
                     secureTextEntry={true}
                 />

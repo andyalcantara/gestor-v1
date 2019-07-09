@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d12bf7-03c0-4c26-bb66-dea4e3f335a4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/components/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Signin.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -88,18 +88,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/actions/shared.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="178" column="15" selection-start-line="178" selection-start-column="15" selection-end-line="178" selection-end-column="15" />
-              <folding>
-                <element signature="e#0#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/actions/invoice.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
@@ -108,11 +96,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Signup.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="584">
-              <caret line="89" column="44" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
+              <caret line="89" column="42" selection-start-line="89" selection-start-column="42" selection-end-line="89" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/components/Signin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -173,7 +173,6 @@
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/reducers/invoice.js" />
         <option value="$PROJECT_DIR$/reducers/clinic.js" />
-        <option value="$PROJECT_DIR$/components/Signin.js" />
         <option value="$PROJECT_DIR$/components/Clinics.js" />
         <option value="$PROJECT_DIR$/components/Calculator.js" />
         <option value="$PROJECT_DIR$/components/Dashboard.js" />
@@ -182,6 +181,7 @@
         <option value="$PROJECT_DIR$/utils/utility-components/Invoice.js" />
         <option value="$PROJECT_DIR$/components/Facturas.js" />
         <option value="$PROJECT_DIR$/components/Signup.js" />
+        <option value="$PROJECT_DIR$/components/Signin.js" />
       </list>
     </option>
   </component>
@@ -283,12 +283,12 @@
       <workItem from="1562079149721" duration="10569000" />
       <workItem from="1562096997866" duration="10000" />
       <workItem from="1562175563326" duration="6217000" />
-      <workItem from="1562593451444" duration="5240000" />
+      <workItem from="1562593451444" duration="5404000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171110000" />
+    <option name="totallyTimeSpent" value="171274000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -303,7 +303,7 @@
     <frame x="0" y="-1080" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.124010555" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.124010555" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -317,7 +317,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.1973001" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.1973001" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -451,13 +451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Signin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Clinics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -583,7 +576,17 @@
     <entry file="file://$PROJECT_DIR$/components/Signup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="584">
-          <caret line="89" column="44" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
+          <caret line="89" column="42" selection-start-line="89" selection-start-column="42" selection-end-line="89" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Signin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
