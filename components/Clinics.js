@@ -39,24 +39,36 @@ class Clinics extends React.Component {
         const { name, pay } = this.state;
         const { navigation, dispatch } = this.props;
 
-        getUser().then(result => {
-            if (result) {
-                const storage = JSON.parse(result);
-                console.log(storage);
-                dispatch(createClinic({name: name, pay: pay}, storage['token']));
-                navigation.goBack();
-            }
-        });
+        if (name === '' || pay === '') {
+            alert('Hola!! Todos los campos son requeridos');
+        } else {
+            getUser().then(result => {
+                if (result) {
+                    const storage = JSON.parse(result);
+                    console.log(storage);
+                    dispatch(createClinic({name: name, pay: pay}, storage['token']));
+                    navigation.goBack();
+                }
+            });
+        }
     };
 
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
                 <Text style={styles.label}>Name</Text>
-                <TextInput style={styles.input} onChangeText={this.handleName}/>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={this.handleName}
+                    value={this.state.name}
+                />
 
                 <Text style={styles.label}>Pay</Text>
-                <TextInput style={styles.input} onChangeText={this.handlePay} />
+                <TextInput
+                    style={styles.input}
+                    onChangeText={this.handlePay}
+                    value={this.state.pay}
+                />
 
                 <SubmitButton onPress={this.handleSubmit} />
             </KeyboardAvoidingView>
