@@ -79,12 +79,16 @@ class Signup extends React.Component {
         const { dispatch, navigation } = this.props;
         let { email, password } = this.state;
 
-        dispatch(handleSignup({email: email, password: password}));
-        this.setState({
-           email: '',
-           password: ''
-        });
-        navigation.navigate('Signin');
+        if (email === '' || password === '') {
+            alert('Hola!! Todos los campos son requeridos');
+        } else {
+            dispatch(handleSignup({email: email, password: password}));
+            this.setState({
+                email: '',
+                password: ''
+            });
+            navigation.navigate('Signin');
+        }
     };
 
     render() {
@@ -94,6 +98,7 @@ class Signup extends React.Component {
                 <TextInput
                     style={styles.input}
                     onChangeText={this.handleEmail}
+                    value={this.state.email}
                     autoCapitalize='none'
                 />
 
@@ -101,6 +106,7 @@ class Signup extends React.Component {
                 <TextInput
                     style={styles.input}
                     onChangeText={this.handlePassword}
+                    value={this.state.password}
                     autoCapitalize='none'
                     secureTextEntry={true}
                 />
