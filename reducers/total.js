@@ -1,4 +1,4 @@
-import {SET_TOTAL} from "../actions/total";
+import {SET_TOTAL, SET_COST} from "../actions/total";
 
 export default function totalReducer(state = {}, action) {
     switch (action.type) {
@@ -8,6 +8,14 @@ export default function totalReducer(state = {}, action) {
             return {
                 ...state,
                 total: total
+            };
+
+        case SET_COST:
+            const { cost } = action;
+
+            return {
+                ...state,
+                cost: cost
             };
 
         default:

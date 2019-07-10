@@ -18,7 +18,9 @@ class Calculator extends React.Component {
 
     state = {
         addingCost: false,
-        labCost: 0
+        labCost: 0,
+        newTotal: 0,
+        newTotalIncome: 0
     };
 
     componentDidMount() {
@@ -55,7 +57,8 @@ class Calculator extends React.Component {
 
         dispatch(setTotal(newTotal));
         this.setState({
-            addingCost: false
+            addingCost: false,
+            newTotal: newTotal
         })
     };
 
@@ -72,7 +75,7 @@ class Calculator extends React.Component {
     };
 
     render() {
-        const { addingCost, labCost } = this.state;
+        const { addingCost, labCost, newTotal } = this.state;
         const { sectionListData, total, totalIncome } = this.props;
         let date = new Date();
         let acDate = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(date);
@@ -101,7 +104,7 @@ class Calculator extends React.Component {
                     keyExtractor={(item) => item._id}
                 />
 
-                <Text>Total facturado: {total - labCost}</Text>
+                <Text>Total facturado: {total}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
 
                 <View style={styles.inputContainer}>
@@ -134,6 +137,7 @@ class Calculator extends React.Component {
 function mapStateToProps({ invoices, clinics }) {
 
     let incomes = [];
+    let income;
     let dateMonth = new Date().getMonth();
 
     // Getting all invoices from the current month
@@ -163,14 +167,19 @@ function mapStateToProps({ invoices, clinics }) {
         let clinic = theClinics[i];
         let invoices = invoicesMonthArray.filter(invoice => invoice.clinic === clinic._id);
 
+        let discount = 0;
         let subTotal = invoices.reduce(reducer, 0);
-        let income = subTotal * clinic.pay;
-        let acIncome = {
-            name: clinic.name,
-            income: income
-        };
 
-        incomes.push(acIncome);
+        getDiscount().then(result => {
+            discount = JSON.parse(result).discount;
+            income = (subTotal - discount) * clinic.pay;
+            let acIncome = {
+                name: clinic.name,
+                income: income
+            };
+            console.log(discount, 'This is discount');
+            incomes.push(acIncome);
+        });
     }
 
     const incomeReducer = (accumulator, value) => accumulator + value.income;
