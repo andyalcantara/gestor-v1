@@ -28,10 +28,15 @@ class Calculator extends React.Component {
 
         getDiscount().then((cost) => {
             let acCost = JSON.parse(cost).discount;
-            console.log(acCost, 'THIS IS COST FROM ASYNC STORAGE');
-            this.setState({
-                labCost: acCost
-            });
+            if (acCost === null) {
+                this.setState({
+                    labCost: 0
+                });
+            } else {
+                this.setState({
+                    labCost: acCost
+                });
+            }
         });
     }
 
