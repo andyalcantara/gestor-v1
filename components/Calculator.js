@@ -49,10 +49,12 @@ class Calculator extends React.Component {
             addingCost: false,
             newTotal: newTotal
         })
+        dispatch(setLabCost(labCost));
     };
 
     handleCost = (text) => {
         const { labCost } = this.state;
+        const { dispatch } = this.props;
 
         let cost = (parseFloat(text) * 100) / 100;
         let finalCost = cost + labCost;
@@ -125,6 +127,7 @@ class Calculator extends React.Component {
 
 function mapStateToProps({ invoices, clinics, totals }) {
 
+    let superTotal = 0;
     let incomes = [];
     let dateMonth = new Date().getMonth();
     // let acTotal = Object.keys(totals).map(key => totals[key]);
@@ -134,7 +137,6 @@ function mapStateToProps({ invoices, clinics, totals }) {
         let invoiceDate = new Date(invoice.date).getMonth();
         return dateMonth === invoiceDate;
     });
-
 
     let acClinics = Object.keys(clinics).map(key => clinics[key])
         .map(clinic => {
@@ -155,7 +157,7 @@ function mapStateToProps({ invoices, clinics, totals }) {
         let clinic = theClinics[i];
         let invoices = invoicesMonthArray.filter(invoice => invoice.clinic === clinic._id);
 
-        let discount = 0;
+        let discount = totals.cost;
         let subTotal = invoices.reduce(reducer, 0);
 
         let income = (subTotal - discount) * clinic.pay;
@@ -170,11 +172,17 @@ function mapStateToProps({ invoices, clinics, totals }) {
     const incomeReducer = (accumulator, value) => accumulator + value.income;
     let totalIncome = incomes.reduce(incomeReducer, 0).toFixed(2);
 
+    if (totals.cost !== 0) {
+        superTotal = total - totals.cost;
+    } else {
+        superTotal = total;
+    }
+
     return {
         invoices: Object.keys(invoices).map(key => invoices[key]),
         clinics: Object.keys(clinics).map(key => clinics[key]),
         sectionListData: acClinics,
-        total: total,
+        total: superTotal,
         totalIncome: totalIncome,
         storeTotal: totals
     }
