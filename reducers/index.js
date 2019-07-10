@@ -10,7 +10,7 @@ export const appReducer = combineReducers({
     user: userReducer,
     clinics: clinicsReducer,
     invoices: invoiceReducer,
-    total: totalReducer,
+    totals: totalReducer,
     treatments: treatmentReducer
 });
 

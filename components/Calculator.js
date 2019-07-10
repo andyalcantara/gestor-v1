@@ -11,7 +11,7 @@ import {
 
 import { connect } from 'react-redux';
 import {aquaMarine} from "../utils/colors";
-import {setTotal} from "../actions/total";
+import {setLabCost, setTotal} from "../actions/total";
 import {saveDiscount, getDiscount} from '../utils/helpers';
 
 class Calculator extends React.Component {
@@ -24,22 +24,11 @@ class Calculator extends React.Component {
     };
 
     componentDidMount() {
+        const { labCost } = this.state;
         const { dispatch, total } = this.props;
 
         dispatch(setTotal(total));
-
-        getDiscount().then((cost) => {
-            let acCost = JSON.parse(cost).discount;
-            if (acCost === null) {
-                this.setState({
-                    labCost: 0
-                });
-            } else {
-                this.setState({
-                    labCost: acCost
-                });
-            }
-        });
+        dispatch(setLabCost(labCost));
     }
 
     handleAddingCost = () => {
@@ -75,11 +64,11 @@ class Calculator extends React.Component {
     };
 
     render() {
-        const { addingCost, labCost, newTotal } = this.state;
-        const { sectionListData, total, totalIncome } = this.props;
+        const { addingCost } = this.state;
+        const { sectionListData, total, totalIncome, storeTotal } = this.props;
         let date = new Date();
         let acDate = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(date);
-
+        console.log(storeTotal.total, 'This is totals');
         return (
             <SafeAreaView>
                 <Text>Here you can find the whole Income of your clinics</Text>
@@ -134,12 +123,11 @@ class Calculator extends React.Component {
     }
 }
 
-function mapStateToProps({ invoices, clinics }) {
+function mapStateToProps({ invoices, clinics, totals }) {
 
     let incomes = [];
-    let income;
     let dateMonth = new Date().getMonth();
-
+    // let acTotal = Object.keys(totals).map(key => totals[key]);
     // Getting all invoices from the current month
     let invoicesArray = Object.keys(invoices).map(key => invoices[key]);
     let invoicesMonthArray = invoicesArray.filter(invoice => {
@@ -170,16 +158,13 @@ function mapStateToProps({ invoices, clinics }) {
         let discount = 0;
         let subTotal = invoices.reduce(reducer, 0);
 
-        getDiscount().then(result => {
-            discount = JSON.parse(result).discount;
-            income = (subTotal - discount) * clinic.pay;
-            let acIncome = {
-                name: clinic.name,
-                income: income
-            };
-            console.log(discount, 'This is discount');
-            incomes.push(acIncome);
-        });
+        let income = (subTotal - discount) * clinic.pay;
+        let acIncome = {
+            name: clinic.name,
+            income: income
+        };
+        console.log(discount, 'This is discount');
+        incomes.push(acIncome);
     }
 
     const incomeReducer = (accumulator, value) => accumulator + value.income;
@@ -190,7 +175,8 @@ function mapStateToProps({ invoices, clinics }) {
         clinics: Object.keys(clinics).map(key => clinics[key]),
         sectionListData: acClinics,
         total: total,
-        totalIncome: totalIncome
+        totalIncome: totalIncome,
+        storeTotal: totals
     }
 }
 
