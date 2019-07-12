@@ -83,7 +83,7 @@ class Facturas extends React.Component {
                     style={styles.invoiceButton}
                     onPress={
                         () => this.props.navigation
-                            .navigate('Factura', {clinicId: clinicId, treatment: treatments[0].name})}
+                            .navigate('Factura', {clinicId: clinicId, treatment: treatments[0] !== undefined ? treatments[0].name : ''})}
                 >
                     <Text style={{color: 'black'}}>Add Invoice</Text>
                 </TouchableOpacity>

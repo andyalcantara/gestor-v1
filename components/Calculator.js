@@ -20,7 +20,8 @@ class Calculator extends React.Component {
         addingCost: false,
         labCost: 0,
         newTotal: 0,
-        newTotalIncome: 0
+        newTotalIncome: 0,
+        cost: 0
     };
 
     componentDidMount() {
@@ -40,29 +41,23 @@ class Calculator extends React.Component {
     applyCost = () => {
         // Call dispatch to set total
         const { dispatch, total } = this.props;
-        const { labCost } = this.state;
+        const { cost } = this.state;
 
-        let newTotal = total - labCost;
-
+        let newTotal = ((total - cost) * 100) / 100;
         dispatch(setTotal(newTotal));
+
         this.setState({
             addingCost: false,
             newTotal: newTotal
-        })
-        dispatch(setLabCost(labCost));
+        });
+        dispatch(setLabCost(cost));
     };
 
     handleCost = (text) => {
-        const { labCost } = this.state;
-        const { dispatch } = this.props;
-
         let cost = (parseFloat(text) * 100) / 100;
-        let finalCost = cost + labCost;
-
         this.setState({
-            labCost: finalCost
+            cost: cost
         });
-        saveDiscount(finalCost);
     };
 
     render() {

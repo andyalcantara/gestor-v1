@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d12bf7-03c0-4c26-bb66-dea4e3f335a4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Calculator.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calculator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Facturas.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Facturas.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,23 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Clinics.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/Calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+            <state relative-caret-position="251">
+              <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -40,10 +30,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/helpers.js">
+        <entry file="file://$PROJECT_DIR$/components/Dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+            <state relative-caret-position="207">
+              <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Facturas.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-501">
+              <caret line="85" column="108" selection-start-line="85" selection-start-column="108" selection-end-line="85" selection-end-column="108" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +65,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reducers/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="102">
               <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -169,7 +174,6 @@
         <option value="$PROJECT_DIR$/components/Dashboard.js" />
         <option value="$PROJECT_DIR$/utils/utility-components/Clinic.js" />
         <option value="$PROJECT_DIR$/utils/utility-components/Invoice.js" />
-        <option value="$PROJECT_DIR$/components/Facturas.js" />
         <option value="$PROJECT_DIR$/components/Signup.js" />
         <option value="$PROJECT_DIR$/components/Signin.js" />
         <option value="$PROJECT_DIR$/components/Clinics.js" />
@@ -178,15 +182,15 @@
         <option value="$PROJECT_DIR$/actions/total.js" />
         <option value="$PROJECT_DIR$/reducers/total.js" />
         <option value="$PROJECT_DIR$/reducers/index.js" />
+        <option value="$PROJECT_DIR$/components/Facturas.js" />
         <option value="$PROJECT_DIR$/components/Calculator.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-1080" />
-    <option name="y" value="-1020" />
-    <option name="width" value="1080" />
-    <option name="height" value="1920" />
+    <option name="y" value="-1080" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -292,12 +296,13 @@
       <workItem from="1562096997866" duration="10000" />
       <workItem from="1562175563326" duration="6217000" />
       <workItem from="1562593451444" duration="12237000" />
-      <workItem from="1562785876710" duration="4626000" />
+      <workItem from="1562785876710" duration="4843000" />
+      <workItem from="1562855435149" duration="2535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182733000" />
+    <option name="totallyTimeSpent" value="185485000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -309,10 +314,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1080" y="-1020" width="1080" height="1920" extended-state="0" />
+    <frame x="0" y="-1080" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22180095" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12295514" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -326,7 +331,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.20798668" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.21101871" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -494,32 +499,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Facturas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="131" column="22" lean-forward="true" selection-start-line="131" selection-start-column="22" selection-end-line="131" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Clinics.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reducers/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -564,10 +566,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/helpers.js">
+    <entry file="file://$PROJECT_DIR$/components/Dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+        <state relative-caret-position="207">
+          <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Facturas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-501">
+          <caret line="85" column="108" selection-start-line="85" selection-start-column="108" selection-end-line="85" selection-end-column="108" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -585,20 +600,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reducers/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+        <state relative-caret-position="251">
+          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
