@@ -90,7 +90,7 @@ class Calculator extends React.Component {
                     keyExtractor={(item) => item._id}
                 />
 
-                <Text>Total facturado: {total}</Text>
+                <Text>Total facturado: {total.toFixed(2)}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
 
                 <View style={styles.inputContainer}>
@@ -168,7 +168,7 @@ function mapStateToProps({ invoices, clinics, totals }) {
     let totalIncome = incomes.reduce(incomeReducer, 0).toFixed(2);
 
     if (totals.cost !== 0) {
-        superTotal = total - totals.cost;
+        superTotal = ((total - totals.cost) * 100) / 100;
     } else {
         superTotal = total;
     }
