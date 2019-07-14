@@ -12,7 +12,6 @@ import {
 import { connect } from 'react-redux';
 import {aquaMarine} from "../utils/colors";
 import {setLabCost, setTotal} from "../actions/total";
-import {saveDiscount, getDiscount} from '../utils/helpers';
 
 class Calculator extends React.Component {
 
