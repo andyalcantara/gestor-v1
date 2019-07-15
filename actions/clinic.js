@@ -25,10 +25,10 @@ export function deleteClinic(id) {
     }
 }
 
-export function addLabCost(id, cost) {
+export function addLabCost(id, costs) {
     return {
         type: ADD_LABCOST,
         id,
-        cost
+        costs
     }
 }

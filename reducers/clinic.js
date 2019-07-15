@@ -27,12 +27,12 @@ export default function clinicsReducer(state = {}, action) {
             };
 
         case ADD_LABCOST:
-            const { id, cost } = action;
+            const { id, costs } = action;
             return {
                 ...state,
                 [id]: {
                     ...state[id],
-                    labCosts: state[id].labCosts.concat([cost])
+                    labCosts: costs
                 }
             };
 

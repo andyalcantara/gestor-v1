@@ -1,5 +1,5 @@
 import {loginUser, logOutUser, signUpUser} from './user';
-import { getClinics, addClinic, deleteClinic } from "./clinic";
+import { getClinics, addClinic, deleteClinic, addLabCost } from "./clinic";
 import {saveUser} from "../utils/helpers";
 import {addInvoice, getInvoices, getAllInvoices, deleteInvoices} from "./invoice";
 import {addTreatment, getTreatments} from "./treatment";
@@ -89,7 +89,8 @@ export function addClinicLabCost(body, token, id) {
             body: JSON.stringify(body)
         }).then(response => response.json())
             .then(data => {
-                dispatch(addLabCost(data))
+                console.log(data, 'Data from server!');
+                dispatch(addLabCost(data._id, data.labCosts))
             });
     }
 }

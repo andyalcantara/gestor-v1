@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 import Invoice from '../utils/utility-components/Invoice';
 import {getUser} from "../utils/helpers";
-import {grabInvoices, grabTreatments} from "../actions/shared";
+import {grabInvoices, grabTreatments, addClinicLabCost} from "../actions/shared";
 import {aquaMarine} from "../utils/colors";
 
 class Facturas extends React.Component {
@@ -67,7 +67,17 @@ class Facturas extends React.Component {
     };
 
     applyCostToClinic = () => {
+        const { dispatch, navigation } = this.props;
+        const { labCost } = this.state;
+        const clinicId = navigation.getParam('clinicId');
 
+        getUser().then(result => {
+            let token = JSON.parse(result).token;
+            dispatch(addClinicLabCost({labCosts: [labCost]}, token, clinicId));
+            this.setState({
+                showCost: false
+            });
+        });
     };
 
     handleIncomeCalc = (id) => {
@@ -140,13 +150,14 @@ class Facturas extends React.Component {
                 {showCost ?
                     <View>
                         <TextInput
+                            style={styles.input}
                             onChangeText={this.handleLabCost}
                         />
                         <TouchableOpacity
                             style={styles.invoiceButton}
                             onPress={this.applyCostToClinic}
                         >
-
+                            <Text>Aplicar Costo</Text>
                         </TouchableOpacity>
                     </View>
                     :
@@ -182,6 +193,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: 40,
         marginTop: 10,
+    },
+    input: {
+        borderColor: aquaMarine,
+        borderRadius: 25,
+        borderWidth: 1,
+        width: '100%',
+        height: 40,
+        marginTop: 20,
+        paddingLeft: 10,
     }
 });
 
