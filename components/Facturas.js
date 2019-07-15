@@ -71,13 +71,17 @@ class Facturas extends React.Component {
         const { labCost } = this.state;
         const clinicId = navigation.getParam('clinicId');
 
-        getUser().then(result => {
-            let token = JSON.parse(result).token;
-            dispatch(addClinicLabCost({labCosts: [labCost]}, token, clinicId));
-            this.setState({
-                showCost: false
+        if (labCost === '') {
+            alert('Todos los campos son requeridos!');
+        } else {
+            getUser().then(result => {
+                let token = JSON.parse(result).token;
+                dispatch(addClinicLabCost({labCosts: [labCost]}, token, clinicId));
+                this.setState({
+                    showCost: false
+                });
             });
-        });
+        }
     };
 
     handleIncomeCalc = (id) => {
