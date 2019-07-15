@@ -110,6 +110,12 @@ class Facturas extends React.Component {
                 >
                     <Text style={{color: 'black'}}>Calculate Total</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.labCost}
+                >
+                    <Text>Costo de Laboratorio</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -131,6 +137,16 @@ const styles = StyleSheet.create({
         height: 40,
         marginTop: 10,
     },
+    labCost: {
+        backgroundColor: aquaMarine,
+        borderRadius: 25,
+        borderWidth: 1,
+        borderColor: aquaMarine,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 40,
+        marginTop: 10,
+    }
 });
 
 function mapStateToProps({ invoices, clinics, treatments}) {
