@@ -77,6 +77,23 @@ export function createClinic(body, token) {
     }
 }
 
+export function addClinicLabCost(body, token, id) {
+    return (dispatch) => {
+        return fetch(url + 'clinic/' + id + '/update', {
+            method: 'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(body)
+        }).then(response => response.json())
+            .then(data => {
+                dispatch(addLabCost(data))
+            });
+    }
+}
+
 export function eraseClinic(id, token) {
     return (dispatch) => {
         return fetch(url + 'clinic/' + id, {

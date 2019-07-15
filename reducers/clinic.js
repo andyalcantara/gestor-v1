@@ -1,4 +1,4 @@
-import {GET_CLINICS, ADD_CLINIC, DELETE_CLINIC} from '../actions/clinic';
+import {GET_CLINICS, ADD_CLINIC, DELETE_CLINIC, ADD_LABCOST} from '../actions/clinic';
 
 export default function clinicsReducer(state = {}, action) {
 
@@ -24,6 +24,16 @@ export default function clinicsReducer(state = {}, action) {
             return {
                 ...state,
                 [clinic._id]: clinic
+            };
+
+        case ADD_LABCOST:
+            const { id, cost } = action;
+            return {
+                ...state,
+                [id]: {
+                    ...state[id],
+                    labCosts: state[id].labCosts.concat(cost)
+                }
             };
 
         case DELETE_CLINIC:

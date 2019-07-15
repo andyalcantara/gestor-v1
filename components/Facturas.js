@@ -4,7 +4,8 @@ import {
     Text,
     TouchableOpacity,
     FlatList,
-    StyleSheet
+    StyleSheet,
+    TextInput
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -20,7 +21,9 @@ class Facturas extends React.Component {
         clinicInvoices: [],
         total: 0,
         income: 0,
-        show: false
+        show: false,
+        showCost: false,
+        labCost: ''
     };
 
     static navigationOptions = ({navigation}) => ({
@@ -51,6 +54,22 @@ class Facturas extends React.Component {
         });
     }
 
+    showLabCostInput = () => {
+        this.setState(prevState => ({
+            showCost: !prevState.showCost
+        }))
+    };
+
+    handleLabCost = (text) => {
+        this.setState({
+            labCost: text
+        });
+    };
+
+    applyCostToClinic = () => {
+
+    };
+
     handleIncomeCalc = (id) => {
         const { invoices, clinics } = this.props;
 
@@ -70,7 +89,7 @@ class Facturas extends React.Component {
 
     render() {
         const { invoices, navigation, treatments } = this.props;
-        const { total, show, income } = this.state;
+        const { total, show, income, showCost } = this.state;
 
         let clinicId = navigation.getParam('clinicId');
         let acInvoices = invoices.filter(invoice => {
@@ -113,9 +132,26 @@ class Facturas extends React.Component {
 
                 <TouchableOpacity
                     style={styles.labCost}
+                    onPress={this.showLabCostInput}
                 >
                     <Text>Costo de Laboratorio</Text>
                 </TouchableOpacity>
+
+                {showCost ?
+                    <View>
+                        <TextInput
+                            onChangeText={this.handleLabCost}
+                        />
+                        <TouchableOpacity
+                            style={styles.invoiceButton}
+                            onPress={this.applyCostToClinic}
+                        >
+
+                        </TouchableOpacity>
+                    </View>
+                    :
+                    <View></View>
+                }
             </View>
         );
     }

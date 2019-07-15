@@ -1,6 +1,7 @@
 export const GET_CLINICS = 'GET_CLINICS';
 export const ADD_CLINIC = 'ADD_CLINIC';
 export const DELETE_CLINIC = 'DELETE_CLINIC';
+export const ADD_LABCOST = 'ADD_LABCOST';
 
 export function getClinics(clinics, userId) {
     return {
@@ -21,5 +22,13 @@ export function deleteClinic(id) {
     return {
         type: DELETE_CLINIC,
         id
+    }
+}
+
+export function addLabCost(id, cost) {
+    return {
+        type: ADD_LABCOST,
+        id,
+        cost
     }
 }
