@@ -38,7 +38,9 @@ class Factura extends React.Component {
         modalOpen: false,
         treatName: '',
         tratamientos: [],
-        treatPrice: 0
+        treatPrice: 0,
+        treatFromInput: '',
+        priceFromInput: ''
     };
 
     componentDidMount() {
@@ -57,6 +59,18 @@ class Factura extends React.Component {
             }
         });
     }
+
+    handleNombreDescuento = (text) => {
+      this.setState({
+          treatFromInput: text
+      });
+    };
+
+    handlePrecioDescuento = (text) => {
+        this.setState({
+            priceFromInput: parseFloat(text)
+        });
+    };
 
     handleTreatName = (text) => {
         this.setState({
@@ -147,7 +161,7 @@ class Factura extends React.Component {
 
     render() {
         const { treatments } = this.props;
-        const { tratamientos } = this.state;
+        const { tratamientos, priceFromInput, treatFromInput } = this.state;
 
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
@@ -165,6 +179,23 @@ class Factura extends React.Component {
                         onChangeText={this.handleName}
                         value={this.state.name}
                     />
+
+                    <Text style={styles.label}>Tratamiento con descuento</Text>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={this.handleNombreDescuento}
+                    />
+                    {
+                        treatFromInput ?
+                            <View>
+                                <Text style={styles.label}>Descuento</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={this.handlePrecioDescuento}
+                                />
+                            </View> :
+                            <View></View>
+                    }
 
                     <Text style={styles.label}>Tratamientos</Text>
                     {tratamientos.length > 0 ?
