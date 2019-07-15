@@ -4,67 +4,19 @@ import {
     Text,
     SafeAreaView,
     SectionList,
-    StyleSheet,
-    TouchableOpacity,
-    TextInput
+    StyleSheet
 } from "react-native";
 
 import { connect } from 'react-redux';
 import {aquaMarine} from "../utils/colors";
-import {setLabCost, setTotal} from "../actions/total";
 
 class Calculator extends React.Component {
 
-    state = {
-        addingCost: false,
-        labCost: 0,
-        newTotal: 0,
-        newTotalIncome: 0,
-        cost: 0
-    };
-
-    componentDidMount() {
-        const { labCost } = this.state;
-        const { dispatch, total } = this.props;
-
-        dispatch(setTotal(total));
-        dispatch(setLabCost(labCost));
-    }
-
-    handleAddingCost = () => {
-      this.setState(prevState => ({
-          addingCost: !prevState.addingCost
-      }));
-    };
-
-    applyCost = () => {
-        // Call dispatch to set total
-        const { dispatch, total } = this.props;
-        const { cost } = this.state;
-
-        let newTotal = ((total - cost) * 100) / 100;
-        dispatch(setTotal(newTotal));
-
-        this.setState({
-            addingCost: false,
-            newTotal: newTotal
-        });
-        dispatch(setLabCost(cost));
-    };
-
-    handleCost = (text) => {
-        let cost = (parseFloat(text) * 100) / 100;
-        this.setState({
-            cost: cost
-        });
-    };
-
     render() {
-        const { addingCost } = this.state;
-        const { sectionListData, total, totalIncome, storeTotal } = this.props;
+        const { sectionListData, total, totalIncome } = this.props;
         let date = new Date();
         let acDate = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(date);
-        console.log(storeTotal.total, 'This is totals');
+
         return (
             <SafeAreaView>
                 <Text>Here you can find the whole Income of your clinics</Text>
@@ -91,38 +43,15 @@ class Calculator extends React.Component {
 
                 <Text>Total facturado: {total.toFixed(2)}</Text>
                 <Text>Total para casa: {totalIncome}</Text>
-
-                <View style={styles.inputContainer}>
-                    <TouchableOpacity
-                        onPress={this.handleAddingCost}
-                        style={styles.addLabCostBtn}
-                    >
-                        <Text style={styles.btnTxt}>Costo de Laboratorio</Text>
-                    </TouchableOpacity>
-
-                    {addingCost === true ?
-                        <TextInput style={styles.input} onChangeText={this.handleCost} />
-                        : <Text></Text>}
-
-                    {addingCost === true ? (
-                        <TouchableOpacity
-                            onPress={this.applyCost}
-                            style={styles.aplicarBtn}
-                        >
-                            <Text style={styles.btnTxt}>Aplicar</Text>
-                        </TouchableOpacity>
-                    ) : <Text></Text>}
-                </View>
-
             </SafeAreaView>
         );
     }
 }
 
-function mapStateToProps({ invoices, clinics, totals }) {
+function mapStateToProps({ invoices, clinics }) {
 
-    let superTotal = 0;
     let incomes = [];
+    let costs = [];
     let dateMonth = new Date().getMonth();
     // let acTotal = Object.keys(totals).map(key => totals[key]);
     // Getting all invoices from the current month
@@ -146,39 +75,40 @@ function mapStateToProps({ invoices, clinics, totals }) {
     const reducer = (accumulator, value) => accumulator + parseFloat(value.price);
     let total = invoicesMonthArray.reduce(reducer, 0);
 
+    const costsReducer = (accumulator, value) => accumulator + parseFloat(value);
+
     let theClinics = Object.keys(clinics).map(key => clinics[key]);
     for (let i = 0; i < theClinics.length; i++) {
         let clinic = theClinics[i];
         let invoices = invoicesMonthArray.filter(invoice => invoice.clinic === clinic._id);
-
-        let discount = totals.cost;
         let subTotal = invoices.reduce(reducer, 0);
+        let costs = clinic.labCosts.reduce(costsReducer, 0);
 
-        let income = (subTotal - discount) * clinic.pay;
+        let income = (subTotal - costs) * clinic.pay;
         let acIncome = {
             name: clinic.name,
             income: income
         };
-        console.log(discount, 'This is discount');
         incomes.push(acIncome);
     }
 
+    theClinics.forEach(clinic => {
+       clinic.labCosts.forEach(cost => {
+           costs.push(cost);
+       });
+    });
+
+    let totalCost = costs.reduce(costsReducer, 0);
+
     const incomeReducer = (accumulator, value) => accumulator + value.income;
     let totalIncome = incomes.reduce(incomeReducer, 0).toFixed(2);
-
-    if (totals.cost !== 0) {
-        superTotal = ((total - totals.cost) * 100) / 100;
-    } else {
-        superTotal = total;
-    }
 
     return {
         invoices: Object.keys(invoices).map(key => invoices[key]),
         clinics: Object.keys(clinics).map(key => clinics[key]),
         sectionListData: acClinics,
-        total: superTotal,
-        totalIncome: totalIncome,
-        storeTotal: totals
+        total: total - totalCost,
+        totalIncome: totalIncome
     }
 }
 
@@ -191,16 +121,7 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 15,
     },
-    input: {
-        borderRadius: 25,
-        borderWidth: 1,
-        borderColor: aquaMarine,
-        height: 40,
-        paddingLeft: 15
-    },
-    inputContainer: {
-        padding: 20,
-    },
+
     addLabCostBtn: {
         alignSelf: 'center',
         height: 40,
