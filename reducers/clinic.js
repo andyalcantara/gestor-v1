@@ -32,7 +32,7 @@ export default function clinicsReducer(state = {}, action) {
                 ...state,
                 [id]: {
                     ...state[id],
-                    labCosts: state[id].labCosts.concat(cost)
+                    labCosts: state[id].labCosts.concat([cost])
                 }
             };
 
