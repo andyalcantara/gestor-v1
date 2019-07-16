@@ -105,17 +105,6 @@ class Factura extends React.Component {
         }));
     };
 
-    invoiceHandler = (dispatch, clinicId, token, price, discount, body, user) => {
-        const { hc, name, tratamiento, precioTotal, tratamientos } = body;
-        dispatch(createInvoice(clinicId, user.token, {
-            clinicHistory: hc,
-            name: name,
-            treatment: tratamiento,
-            price: precioTotal - discount,
-            treatments: tratamientos
-        }));
-    };
-
     handleSubmit = () => {
         const { hc, name, tratamiento, tratamientos, precioTotal, precio, priceFromInput } = this.state;
         const { dispatch, navigation } = this.props;
@@ -134,7 +123,7 @@ class Factura extends React.Component {
                             clinicHistory: hc,
                             name: name,
                             treatment: tratamiento,
-                            price: precioTotal - priceFromInput,
+                            price: precioTotal + priceFromInput,
                             treatments: tratamientos
                         }));
                         navigation.goBack();
@@ -149,16 +138,28 @@ class Factura extends React.Component {
                         navigation.goBack();
                     }
                 } else {
-                    if (priceFromInput !== 0) {
+                    if (priceFromInput !== '' && precio === 0) {
                         dispatch(createInvoice(clinicId, user.token, {
                             clinicHistory: hc,
                             name: name,
                             treatment: tratamiento,
-                            price: precio - priceFromInput,
+                            price: priceFromInput,
                             treatments: tratamientos
                         }));
                         navigation.goBack();
-                    } else {
+                    } else if (priceFromInput !== '' && precio !== 0) {
+
+                        let totalAmount = parseFloat(precio) + priceFromInput;
+
+                        dispatch(createInvoice(clinicId, user.token, {
+                            clinicHistory: hc,
+                            name: name,
+                            treatment: tratamiento,
+                            price: totalAmount,
+                            treatments: tratamientos
+                        }));
+                        navigation.goBack();
+                    } else if (precio !== 0) {
                         dispatch(createInvoice(clinicId, user.token, {
                             clinicHistory: hc,
                             name: name,
@@ -213,7 +214,7 @@ class Factura extends React.Component {
                         value={this.state.name}
                     />
 
-                    <Text style={styles.label}>Tratamiento con descuento</Text>
+                    <Text style={styles.label}>Nombre de tratamiento</Text>
                     <TextInput
                         style={styles.input}
                         onChangeText={this.handleNombreDescuento}
