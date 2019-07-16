@@ -205,7 +205,7 @@ class Factura extends React.Component {
 
     render() {
         const { treatments } = this.props;
-        const { tratamientos, priceFromInput, treatFromInput } = this.state;
+        const { tratamientos, treatFromInput } = this.state;
 
         return (
             <KeyboardAvoidingView style={styles.container} behavior="position" enabled>
