@@ -105,8 +105,19 @@ class Factura extends React.Component {
         }));
     };
 
+    invoiceHandler = (dispatch, clinicId, token, price, discount, body, user) => {
+        const { hc, name, tratamiento, precioTotal, tratamientos } = body;
+        dispatch(createInvoice(clinicId, user.token, {
+            clinicHistory: hc,
+            name: name,
+            treatment: tratamiento,
+            price: precioTotal - discount,
+            treatments: tratamientos
+        }));
+    };
+
     handleSubmit = () => {
-        const { hc, name, tratamiento, tratamientos, precioTotal, precio } = this.state;
+        const { hc, name, tratamiento, tratamientos, precioTotal, precio, priceFromInput } = this.state;
         const { dispatch, navigation } = this.props;
 
         let clinicId = navigation.getParam('clinicId');
@@ -118,23 +129,45 @@ class Factura extends React.Component {
                 let user = JSON.parse(result);
 
                 if (precioTotal !== 0) {
-                    dispatch(createInvoice(clinicId, user.token, {
-                        clinicHistory: hc,
-                        name: name,
-                        treatment: tratamiento,
-                        price: precioTotal,
-                        treatments: tratamientos
-                    }));
-                    navigation.goBack();
+                    if (priceFromInput !== '') {
+                        dispatch(createInvoice(clinicId, user.token, {
+                            clinicHistory: hc,
+                            name: name,
+                            treatment: tratamiento,
+                            price: precioTotal - priceFromInput,
+                            treatments: tratamientos
+                        }));
+                        navigation.goBack();
+                    } else {
+                        dispatch(createInvoice(clinicId, user.token, {
+                            clinicHistory: hc,
+                            name: name,
+                            treatment: tratamiento,
+                            price: precioTotal,
+                            treatments: tratamientos
+                        }));
+                        navigation.goBack();
+                    }
                 } else {
-                    dispatch(createInvoice(clinicId, user.token, {
-                        clinicHistory: hc,
-                        name: name,
-                        treatment: tratamiento,
-                        price: precio,
-                        treatments: tratamientos
-                    }));
-                    navigation.goBack();
+                    if (priceFromInput !== 0) {
+                        dispatch(createInvoice(clinicId, user.token, {
+                            clinicHistory: hc,
+                            name: name,
+                            treatment: tratamiento,
+                            price: precio - priceFromInput,
+                            treatments: tratamientos
+                        }));
+                        navigation.goBack();
+                    } else {
+                        dispatch(createInvoice(clinicId, user.token, {
+                            clinicHistory: hc,
+                            name: name,
+                            treatment: tratamiento,
+                            price: precio,
+                            treatments: tratamientos
+                        }));
+                        navigation.goBack();
+                    }
                 }
             });
         }
