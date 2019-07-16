@@ -40,7 +40,8 @@ class Factura extends React.Component {
         tratamientos: [],
         treatPrice: 0,
         treatFromInput: '',
-        priceFromInput: ''
+        priceFromInput: '',
+        firstTreatPrice: 0
     };
 
     componentDidMount() {
@@ -49,7 +50,8 @@ class Factura extends React.Component {
         const treatment = navigation.getParam('treatment');
 
         this.setState({
-            tratamiento: treatment
+            tratamiento: treatment.name,
+            firstTreatPrice: treatment.value
         });
 
         getUser().then(result => {
@@ -97,12 +99,19 @@ class Factura extends React.Component {
     };
 
     handleTreatments = () => {
-        const { tratamiento, precio } = this.state;
+        const { tratamiento, precio, firstTreatPrice } = this.state;
 
-        this.setState(oldState => ({
-            tratamientos: oldState.tratamientos.concat(tratamiento),
-            precioTotal: (oldState.precioTotal * 100 + parseFloat(precio) * 100) / 100
-        }));
+        if (parseFloat(precio) === 0) {
+            this.setState(oldState => ({
+                tratamientos: oldState.tratamientos.concat(tratamiento),
+                precioTotal: (oldState.precioTotal * 100 + parseFloat(firstTreatPrice) * 100) / 100
+            }));
+        } else {
+            this.setState(oldState => ({
+                tratamientos: oldState.tratamientos.concat(tratamiento),
+                precioTotal: (oldState.precioTotal * 100 + parseFloat(precio) * 100) / 100
+            }));
+        }
     };
 
     handleSubmit = () => {
@@ -119,6 +128,7 @@ class Factura extends React.Component {
 
                 if (precioTotal !== 0) {
                     if (priceFromInput !== '') {
+                        console.log(precioTotal, 'This is precio total');
                         dispatch(createInvoice(clinicId, user.token, {
                             clinicHistory: hc,
                             name: name,
