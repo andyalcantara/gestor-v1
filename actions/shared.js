@@ -29,7 +29,10 @@ export function handleLogin(body) {
         return fetch(url + 'user/signin', {
             method: 'POST',
             body: JSON.stringify(body),
-            headers: postHeader
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
         }).then(response => response.json())
             .then(data => {
                 saveUser(data.id, data.token);
