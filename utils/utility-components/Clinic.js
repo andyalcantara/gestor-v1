@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {aquaMarine} from "../colors";
 import { Ionicons } from '@expo/vector-icons';
 
-const Clinic = (props) => {
+const clinic = (props) => {
     return (
         <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <View style={styles.container}>
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Clinic;
+export default clinic;
